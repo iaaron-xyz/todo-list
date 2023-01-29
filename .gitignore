@@ -105,3 +105,4 @@ dist
 
 # Local setup
 .vscode
+src/output.css
