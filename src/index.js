@@ -1,9 +1,26 @@
+import { topHeader, sidebar, mainContent } from './layout/layout';
 import './output.css';
 
-function component() {
-  const element = document.createElement('div');
-  element.innerHTML = '<h1>Hello First Setup!</h1>';
-  return element;
+function baseContainer() {
+  // Base classes
+  const html = document.getElementsByTagName('html')[0];
+  const body = document.getElementsByTagName('body')[0];
+  // Set base attributes for the project
+  html.setAttribute('class', 'h-full w-full');
+  body.setAttribute('class', 'h-full w-full box-border bg-slate-900 text-slate-200');
+
+  // Create the base div element
+  const container = document.createElement('div');
+  container.setAttribute('id', 'container');
+  container.setAttribute('class', 'h-full w-full grid-container');
+  // container.innerHTML = '<h1>Hello Todo List!</h1>';
+  return container;
 }
 
-document.body.appendChild(component());
+// appen base div cintainer
+document.body.appendChild(baseContainer());
+const container = document.getElementById('container');
+// append base sections
+container.appendChild(topHeader());
+container.appendChild(sidebar());
+container.appendChild(mainContent());
