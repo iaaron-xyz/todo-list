@@ -1,8 +1,7 @@
 function topHeader() {
   const header = document.createElement('section');
   header.setAttribute('id', 'section-header');
-  header.setAttribute('class', 'bg-green-900 p-4 col-span-full row-start-1');
-  header.innerHTML = '<h1>Header section</h1>';
+  header.setAttribute('class', 'bg-green-900 py-4 px-8 col-span-full row-start-1 flex items-center');
   return header;
 }
 

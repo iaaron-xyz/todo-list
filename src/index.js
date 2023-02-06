@@ -1,3 +1,4 @@
+import { headerContent } from './layout/header';
 import { topHeader, sidebar, mainContent } from './layout/layout';
 import './output.css';
 
@@ -24,3 +25,5 @@ const container = document.getElementById('container');
 container.appendChild(topHeader());
 container.appendChild(sidebar());
 container.appendChild(mainContent());
+
+document.querySelector('#section-header').appendChild(headerContent());
