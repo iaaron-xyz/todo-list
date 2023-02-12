@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/iaaron-xyz/todo-list#readme",
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "css-loader": "^6.7.3",
     "eslint": "^8.33.0",
     "eslint-config-airbnb-base": "^15.0.0",

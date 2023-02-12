@@ -19,7 +19,7 @@ function sidebarContent() {
   sidebarBottomElements.setAttribute('id', 'sidebar-bottom');
   sidebarBottomElements.setAttribute('class', 'text-2xl row-start-6 self-end');
   sidebarBottomElements.innerHTML = `
-                                    <button id="new-project" class="bg-cyan-500 p-3 rounded-md w-full">
+                                    <button id="new-project-btn" class="bg-cyan-500 p-3 rounded-md w-full">
                                       New project +
                                     </button>
   `;

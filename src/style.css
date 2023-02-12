@@ -62,4 +62,46 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    /**
+    * MODAL STYLE
+    */
+    /* The Modal (background) */
+    .modal {
+        display: block; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 50px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position:relative;
+        margin: auto;
+        padding: 10px;
+        border-radius: 10px;
+        width: max(400px, 30%);
+    }
+
+    /* The Close Button */
+    .close {
+        position: absolute;
+        right: 15px;
+        font-size: 28px;
+        font-weight: 350;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 }

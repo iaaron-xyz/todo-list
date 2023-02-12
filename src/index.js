@@ -1,7 +1,10 @@
 import { headerContent } from './layout/header';
 import { sidebarContent } from './layout/sidebar';
 import { todoListContent } from './layout/content';
-import { topHeader, sidebar, todoList } from './layout/layout';
+import {
+  topHeader, sidebar, todoList, newProjectModal,
+} from './layout/layout';
+import { openNewProjectModal } from './actions/projects';
 import './output.css';
 
 function baseContainer() {
@@ -27,9 +30,14 @@ const container = document.getElementById('container');
 container.appendChild(topHeader());
 container.appendChild(sidebar());
 container.appendChild(todoList());
+container.appendChild(newProjectModal());
 
 // Append basic content to the base sections
 document.querySelector('#section-header').appendChild(headerContent());
 document.querySelector('#section-sidebar').appendChild(sidebarContent()[0]);
 document.querySelector('#section-sidebar').appendChild(sidebarContent()[1]);
 document.querySelector('#section-todolist').appendChild(todoListContent());
+
+// Event listeners
+const newProjectBtn = document.getElementById('new-project-btn');
+newProjectBtn.addEventListener('click', openNewProjectModal);
