@@ -1,4 +1,5 @@
 import { headerContent } from './layout/header';
+import { sidebarContent } from './layout/sidebar';
 import { topHeader, sidebar, mainContent } from './layout/layout';
 import './output.css';
 
@@ -26,4 +27,7 @@ container.appendChild(topHeader());
 container.appendChild(sidebar());
 container.appendChild(mainContent());
 
+// Append basic content to the base sections
 document.querySelector('#section-header').appendChild(headerContent());
+document.querySelector('#section-sidebar').appendChild(sidebarContent()[0]);
+document.querySelector('#section-sidebar').appendChild(sidebarContent()[1]);

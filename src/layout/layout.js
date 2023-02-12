@@ -8,8 +8,7 @@ function topHeader() {
 function sidebar() {
   const sidebarSection = document.createElement('section');
   sidebarSection.setAttribute('id', 'section-sidebar');
-  sidebarSection.setAttribute('class', 'bg-cyan-900 p-4 col-start-1 row-start-2');
-  sidebarSection.innerHTML = '<h2>Sidebar section</h2>';
+  sidebarSection.setAttribute('class', 'bg-cyan-900 p-4 col-start-1 row-start-2 grid grid-rows-6 rounded-lg');
   return sidebarSection;
 }
 
