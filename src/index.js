@@ -1,6 +1,7 @@
 import { headerContent } from './layout/header';
 import { sidebarContent } from './layout/sidebar';
-import { topHeader, sidebar, mainContent } from './layout/layout';
+import { todoListContent } from './layout/content';
+import { topHeader, sidebar, todoList } from './layout/layout';
 import './output.css';
 
 function baseContainer() {
@@ -25,9 +26,10 @@ const container = document.getElementById('container');
 // append base sections
 container.appendChild(topHeader());
 container.appendChild(sidebar());
-container.appendChild(mainContent());
+container.appendChild(todoList());
 
 // Append basic content to the base sections
 document.querySelector('#section-header').appendChild(headerContent());
 document.querySelector('#section-sidebar').appendChild(sidebarContent()[0]);
 document.querySelector('#section-sidebar').appendChild(sidebarContent()[1]);
+document.querySelector('#section-todolist').appendChild(todoListContent());
