@@ -10,7 +10,7 @@ function todoListContent() {
                                       <label class="todo-checkbox flex-none">
                                         <input type="checkbox" name="checkbox" checked/>
                                       </label>
-                                      <p class="grow text-ellipsis">To do item 1</p>
+                                      <p class="grow mx-2">To do item 1</p>
                                       <button class="self-end flex-none bg-rose-800 p-2 rounded">
                                         Delete
                                       </button>
@@ -19,7 +19,7 @@ function todoListContent() {
                                       <label class="todo-checkbox flex-none">
                                         <input type="checkbox" name="checkbox"/>
                                       </label>
-                                      <p class="grow text-ellipsis overflow-hidden">To do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum</p>
+                                      <p class="grow mx-2 h-8 todo-item-text">To do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum To do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum o do item 2: lorem ipsum</p>
                                       <button class="self-end flex-none bg-rose-800 p-2 rounded">
                                         Delete
                                       </button>

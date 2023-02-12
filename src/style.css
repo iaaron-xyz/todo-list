@@ -56,4 +56,10 @@
     input[type="checkbox"]:checked::before {
         transform: scale(1);
     }
+    .todo-item-text {
+        white-space: nowrap; 
+        width: 10px; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
