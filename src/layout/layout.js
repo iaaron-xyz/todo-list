@@ -35,8 +35,7 @@ function newProjectModal() {
                                             
                                             <input type="text" placeholder="Project name" class="form-input mb-4 w-8/12 rounded-lg" required/>
                                             
-                                            <textarea type="text" placeholder="Project description" class="form-input mb-6 w-8/12 rounded-lg" rows="4">
-                                            </textarea>
+                                            <textarea type="text" placeholder="Project description" class="form-input mb-6 w-8/12 rounded-lg" rows="4"></textarea>
                                             
                                             <button type="submit" id="create-project" class="p-2 w-6/12 text-white rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300">Create project</button>
 
