@@ -33,13 +33,14 @@ function newProjectModal() {
                                               Add the info for your new project!
                                             </h2>
                                           </div>
-                                          <form class="modal-form row-span-2 flex flex-col items-center text-indigo-900" id="form-new">
+
+                                          <form method="get" class="modal-form row-span-2 flex flex-col items-center text-indigo-900">
                                             
                                             <input type="text" placeholder="Project name" class="form-input mb-4 w-8/12 rounded-lg" id="project-name" required/>
                                             
                                             <textarea type="text" placeholder="Project description" class="form-input mb-6 w-8/12 rounded-lg" rows="4" id="project-description"></textarea>
                                             
-                                            <button type="submit" id="create-project" class="p-2 w-6/12 text-white rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300">Create project</button>
+                                            <button type="button" id="create-project" class="p-2 w-6/12 text-white rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300">Create Project</button>
 
                                           </form>
                                         </div>

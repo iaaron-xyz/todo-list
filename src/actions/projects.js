@@ -11,6 +11,7 @@ projectsList.push(baseProject);
 function openNewProjectModal() {
   // display on the new project modal
   const newProjectModal = document.getElementById('new-project-modal');
+  // hidden => display: none;
   newProjectModal.classList.remove('hidden');
 }
 
@@ -22,4 +23,31 @@ function closeNewProjectModal() {
   document.getElementById('project-description').value = '';
 }
 
-export { openNewProjectModal, closeNewProjectModal, projectsList };
+function appendProject(obj) {
+  // get the projects section to append append a new one
+  const projects = document.getElementById('projects');
+  // Create a new project container element
+  const newProject = document.createElement('button');
+
+  // Set attributes and values for the new project
+  newProject.setAttribute('class', 'project mb-2 bg-cyan-500 p-2 rounded-md w-full');
+  newProject.textContent = `${obj.name}`;
+
+  projects.appendChild(newProject);
+}
+
+function createProject() {
+  const name = document.getElementById('project-name');
+  const description = document.getElementById('project-description');
+  // Create new project object
+  const newProject = new Project(name.value, description.value);
+  projectsList.push(newProject);
+  // render new project to the DOM
+  appendProject(newProject);
+  // Close modal
+  closeNewProjectModal();
+}
+
+export {
+  openNewProjectModal, closeNewProjectModal, createProject, projectsList,
+};
