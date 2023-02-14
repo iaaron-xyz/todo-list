@@ -30,7 +30,7 @@ function appendProject(obj) {
   const newProject = document.createElement('button');
 
   // Set attributes and values for the new project
-  newProject.setAttribute('class', 'project mb-2 bg-cyan-500 p-2 rounded-md w-full');
+  newProject.setAttribute('class', 'project bg-cyan-500 w-full mb-2 p-2 rounded-md text-left');
   newProject.textContent = `${obj.name}`;
 
   projects.appendChild(newProject);

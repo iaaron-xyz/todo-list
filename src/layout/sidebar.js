@@ -5,7 +5,7 @@ function sidebarContent() {
   const sidebarBottomElements = document.createElement('div');
 
   sidebarTopElements.setAttribute('id', 'sidebar-projects-list`');
-  sidebarTopElements.setAttribute('class', 'text-2xl row-start-1 row-end-5');
+  sidebarTopElements.setAttribute('class', 'row-start-1 row-end-5');
   sidebarBottomElements.innerHTML = '';
 
   // Add the initial projects
@@ -13,7 +13,7 @@ function sidebarContent() {
     sidebarTopElements.innerHTML += `
                                     <div id="projects">
                                       <h2 class="text-4xl mb-6">Your projects</h2>
-                                      <button class="project mb-2 bg-cyan-500 p-2 rounded-md w-full">
+                                      <button class="project bg-cyan-500 w-full mb-2 p-2 rounded-md text-left">
                                         ${element.name}
                                       </button>
                                     </div>
