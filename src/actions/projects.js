@@ -1,14 +1,21 @@
 import { Project } from '../classes/project';
 
 if (!localStorage.getItem('projectsList')) {
+  // Set the increment id
+  let idProject = 0;
+  localStorage.setItem('idProject', idProject);
+
   // Create the base project
   const baseProject = new Project(0, 'Your Tasks', 'This is a general view of all your tasks');
   // The list that will contain all the projects
   const projectsList = [];
   // Push the base project
   projectsList.push(baseProject);
+
   // save list to local storage using stringify to save it properly
+  idProject += 1;
   localStorage.setItem('projectsList', JSON.stringify(projectsList));
+  localStorage.setItem('idProject', idProject);
 }
 
 function openNewProjectModal() {
@@ -37,8 +44,6 @@ function appendProject(obj) {
   newProject.setAttribute('id', `project${obj.id}`);
   newProject.textContent = `${obj.name}`;
 
-  console.log(projects);
-
   projects.appendChild(newProject);
 }
 
@@ -48,11 +53,14 @@ function createProject() {
 
   // Retrieve the list of projects
   const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  let idProject = Number(localStorage.getItem('idProject'));
   // Create new project object
-  const newProject = new Project(projectsList.length, name.value, description.value);
+  const newProject = new Project(idProject, name.value, description.value);
   projectsList.push(newProject);
-  // Store the updated list of projects
+  // Store the updated updated values
+  idProject += 1;
   localStorage.setItem('projectsList', JSON.stringify(projectsList));
+  localStorage.setItem('idProject', idProject);
 
   // render new project to the DOM
   appendProject(newProject);
