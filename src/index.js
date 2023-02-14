@@ -4,7 +4,7 @@ import { todoListContent } from './layout/content';
 import {
   topHeader, sidebar, todoList, newProjectModal,
 } from './layout/layout';
-import { openNewProjectModal } from './actions/projects';
+import { closeNewProjectModal, openNewProjectModal } from './actions/projects';
 import './output.css';
 
 function baseContainer() {
@@ -39,5 +39,9 @@ document.querySelector('#section-sidebar').appendChild(sidebarContent()[1]);
 document.querySelector('#section-todolist').appendChild(todoListContent());
 
 // Event listeners
+// Close new project modal
 const newProjectBtn = document.getElementById('new-project-btn');
+const closeNewProjectBtn = document.getElementById('close-new-btn');
+
 newProjectBtn.addEventListener('click', openNewProjectModal);
+closeNewProjectBtn.addEventListener('click', closeNewProjectModal);

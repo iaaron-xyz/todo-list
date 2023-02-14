@@ -22,20 +22,22 @@ function todoList() {
 function newProjectModal() {
   const newProjectModalSection = document.createElement('div');
   newProjectModalSection.setAttribute('id', 'new-project-modal');
-  newProjectModalSection.setAttribute('class', 'modal pt-16');
+  newProjectModalSection.setAttribute('class', 'modal pt-16 hidden');
   newProjectModalSection.innerHTML = `<div class="modal-content bg-black p-4">
-                                        <span class="close material-symbols-rounded">close</span>
+
+                                        <span class="close material-symbols-rounded" id="close-new-btn">close</span>
+
                                         <div class="modal-main mt-8 p-4 h-full flex flex-col text-center">
                                           <div class="modal-header mb-8">
                                             <h2 id="modal-title" class="text-4xl row-start-1">
                                               Add the info for your new project!
                                             </h2>
                                           </div>
-                                          <form class="modal-form row-span-2 flex flex-col items-center text-indigo-900">
+                                          <form class="modal-form row-span-2 flex flex-col items-center text-indigo-900" id="form-new">
                                             
-                                            <input type="text" placeholder="Project name" class="form-input mb-4 w-8/12 rounded-lg" required/>
+                                            <input type="text" placeholder="Project name" class="form-input mb-4 w-8/12 rounded-lg" id="project-name" required/>
                                             
-                                            <textarea type="text" placeholder="Project description" class="form-input mb-6 w-8/12 rounded-lg" rows="4"></textarea>
+                                            <textarea type="text" placeholder="Project description" class="form-input mb-6 w-8/12 rounded-lg" rows="4" id="project-description"></textarea>
                                             
                                             <button type="submit" id="create-project" class="p-2 w-6/12 text-white rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300">Create project</button>
 
