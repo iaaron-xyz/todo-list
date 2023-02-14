@@ -1,4 +1,4 @@
-import { projectsList } from '../actions/projects';
+import { appendProject } from '../actions/projects';
 
 function sidebarContent() {
   const sidebarTopElements = document.createElement('div');
@@ -6,19 +6,9 @@ function sidebarContent() {
 
   sidebarTopElements.setAttribute('id', 'sidebar-projects-list`');
   sidebarTopElements.setAttribute('class', 'row-start-1 row-end-5');
-  sidebarBottomElements.innerHTML = '';
-
-  // Add the initial projects
-  projectsList.forEach((element) => {
-    sidebarTopElements.innerHTML += `
-                                    <div id="projects">
+  sidebarTopElements.innerHTML = `<div id="projects">
                                       <h2 class="text-4xl mb-6">Your projects</h2>
-                                      <button class="project bg-cyan-500 w-full mb-2 p-2 rounded-md text-left">
-                                        ${element.name}
-                                      </button>
-                                    </div>
-                                    `;
-  });
+                                    </div>`;
 
   sidebarBottomElements.setAttribute('id', 'sidebar-bottom');
   sidebarBottomElements.setAttribute('class', 'text-2xl row-start-6 self-end');
@@ -31,4 +21,12 @@ function sidebarContent() {
   return [sidebarTopElements, sidebarBottomElements];
 }
 
-export { sidebarContent };
+function renderProjects() {
+  // get stored projects
+  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  projectsList.forEach((element) => {
+    appendProject(element);
+  });
+}
+
+export { sidebarContent, renderProjects };

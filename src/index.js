@@ -1,5 +1,5 @@
 import { headerContent } from './layout/header';
-import { sidebarContent } from './layout/sidebar';
+import { sidebarContent, renderProjects } from './layout/sidebar';
 import { todoListContent } from './layout/content';
 import {
   topHeader, sidebar, todoList, newProjectModal,
@@ -26,20 +26,22 @@ function baseContainer() {
 // appen base div cintainer
 document.body.appendChild(baseContainer());
 const container = document.getElementById('container');
+
 // append base sections
 container.appendChild(topHeader());
 container.appendChild(sidebar());
 container.appendChild(todoList());
 container.appendChild(newProjectModal());
 
-// Append basic content to the base sections
+// Append content to the sections
+const sectionSidebar = document.querySelector('#section-sidebar');
 document.querySelector('#section-header').appendChild(headerContent());
-document.querySelector('#section-sidebar').appendChild(sidebarContent()[0]);
-document.querySelector('#section-sidebar').appendChild(sidebarContent()[1]);
 document.querySelector('#section-todolist').appendChild(todoListContent());
+sectionSidebar.appendChild(sidebarContent()[0]);
+sectionSidebar.appendChild(sidebarContent()[1]);
+renderProjects();
 
 // Event listeners
-// Close new project modal
 const newProjectBtn = document.getElementById('new-project-btn');
 const closeNewProjectBtn = document.getElementById('close-new-btn');
 const createProjectBtn = document.getElementById('create-project');
