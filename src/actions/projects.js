@@ -37,12 +37,15 @@ function appendProject(obj) {
   // get the projects section to append append a new one
   const projects = document.getElementById('projects');
   // Create a new project container element
-  const newProject = document.createElement('button');
+  const newProject = document.createElement('div');
 
   // Set attributes and values for the new project
-  newProject.setAttribute('class', 'project bg-cyan-500 w-full mb-2 p-2 rounded-md text-left');
+  newProject.setAttribute('class', 'project bg-cyan-500 w-full mb-2 p-2 rounded-md text-left flex');
   newProject.setAttribute('id', `project${obj.id}`);
-  newProject.textContent = `${obj.name}`;
+  newProject.innerHTML = `<button id="project-id-${obj.id}">${obj.name}</button>
+                          <button class="ml-auto text-rose-800" id="delete-pr-${obj.id}">
+                            <span class="material-symbols-rounded">delete</span>
+                          </button>`;
 
   projects.appendChild(newProject);
 }

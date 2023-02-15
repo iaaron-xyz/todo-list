@@ -7,6 +7,16 @@ import {
 import { closeNewProjectModal, createProject, openNewProjectModal } from './actions/projects';
 import './output.css';
 
+function baseHead() {
+  // header elements
+  const linkElement = document.createElement('link');
+  // Add google material icons
+  linkElement.setAttribute('rel', 'stylesheet');
+  linkElement.setAttribute('href', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+  return linkElement;
+}
+
 function baseContainer() {
   // Base classes
   const html = document.getElementsByTagName('html')[0];
@@ -24,6 +34,7 @@ function baseContainer() {
 }
 
 // appen base div cintainer
+document.head.appendChild(baseHead());
 document.body.appendChild(baseContainer());
 const container = document.getElementById('container');
 
