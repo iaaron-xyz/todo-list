@@ -40,9 +40,9 @@ function appendProject(obj) {
   const newProject = document.createElement('div');
 
   // Set attributes and values for the new project
-  newProject.setAttribute('class', 'project bg-cyan-500 w-full mb-2 p-2 rounded-md text-left flex');
+  newProject.setAttribute('class', 'project-element bg-cyan-500 w-full mb-2 p-2 rounded-md text-left flex');
   newProject.setAttribute('id', `project${obj.id}`);
-  newProject.innerHTML = `<button id="pr-${obj.id}">${obj.name}</button>
+  newProject.innerHTML = `<button class="project" id="pr-${obj.id}">${obj.name}</button>
                           <button class="ml-auto bg-rose-700 delete-project-btn rounded-lg flex p-1" id="pr-${obj.id}">
                             <span class="material-symbols-rounded" id="pr-${obj.id}">delete</span>
                           </button>`;

@@ -1,12 +1,12 @@
 function todoListContent() {
   const todoItem = document.createElement('div');
 
-  todoItem.setAttribute('id', 'sidebar-projects-list`');
+  todoItem.setAttribute('id', 'todos-list-section`');
   todoItem.setAttribute('class', 'text-2xl row-start-1 row-end-5');
   todoItem.innerHTML = `
-                                  <div>
+                                  <div id="todos-content">
                                     <h2 class="mb-6 text-xl">Project name 1</h2>
-                                    <div class="project mb-2 p-4 bg-cyan-500 rounded-md w-full flex">
+                                    <div class="project mb-2 p-4 bg-cyan-500 rounded-md w-full flex" id="todo-item">
                                       <label class="todo-checkbox flex-none">
                                         <input type="checkbox" name="checkbox" checked/>
                                       </label>
