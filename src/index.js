@@ -1,10 +1,21 @@
 import { headerContent } from './layout/header';
-import { sidebarContent, renderProjects } from './layout/sidebar';
+import { sidebarContent } from './layout/sidebar';
 import { todoListContent } from './layout/content';
 import {
-  topHeader, sidebar, todoList, newProjectModal,
+  topHeader,
+  sidebar,
+  todoList,
+  newProjectModal,
 } from './layout/layout';
-import { closeNewProjectModal, createProject, openNewProjectModal } from './actions/projects';
+
+import {
+  closeNewProjectModal,
+  createProject,
+  renderProjects,
+  deleteProject,
+  openNewProjectModal,
+} from './actions/projects';
+
 import './output.css';
 
 function baseHead() {
@@ -56,7 +67,11 @@ renderProjects();
 const newProjectBtn = document.getElementById('new-project-btn');
 const closeNewProjectBtn = document.getElementById('close-new-btn');
 const createProjectBtn = document.getElementById('create-project');
+const deleteProjectBtns = Array.from(document.querySelectorAll('.delete-project-btn'));
 
 newProjectBtn.addEventListener('click', openNewProjectModal);
 closeNewProjectBtn.addEventListener('click', closeNewProjectModal);
 createProjectBtn.addEventListener('click', createProject);
+deleteProjectBtns.forEach((btn) => {
+  btn.addEventListener('click', deleteProject);
+});

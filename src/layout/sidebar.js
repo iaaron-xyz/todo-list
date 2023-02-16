@@ -1,5 +1,3 @@
-import { appendProject } from '../actions/projects';
-
 function sidebarContent() {
   const sidebarTopElements = document.createElement('div');
   const sidebarBottomElements = document.createElement('div');
@@ -21,12 +19,4 @@ function sidebarContent() {
   return [sidebarTopElements, sidebarBottomElements];
 }
 
-function renderProjects() {
-  // get stored projects
-  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
-  projectsList.forEach((element) => {
-    appendProject(element);
-  });
-}
-
-export { sidebarContent, renderProjects };
+export { sidebarContent };

@@ -42,9 +42,9 @@ function appendProject(obj) {
   // Set attributes and values for the new project
   newProject.setAttribute('class', 'project bg-cyan-500 w-full mb-2 p-2 rounded-md text-left flex');
   newProject.setAttribute('id', `project${obj.id}`);
-  newProject.innerHTML = `<button id="project-id-${obj.id}">${obj.name}</button>
-                          <button class="ml-auto text-rose-800" id="delete-pr-${obj.id}">
-                            <span class="material-symbols-rounded">delete</span>
+  newProject.innerHTML = `<button id="pr-${obj.id}">${obj.name}</button>
+                          <button class="ml-auto bg-rose-700 delete-project-btn rounded-lg flex p-1" id="pr-${obj.id}">
+                            <span class="material-symbols-rounded" id="pr-${obj.id}">delete</span>
                           </button>`;
 
   projects.appendChild(newProject);
@@ -71,6 +71,40 @@ function createProject() {
   closeNewProjectModal();
 }
 
+function renderProjects() {
+  // Remove old projects
+  document.getElementById('projects').innerHTML = '<h2 class="text-4xl mb-6">Your projects</h2>';
+  // get stored projects and add the updated project list
+  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  projectsList.forEach((element) => {
+    appendProject(element);
+  });
+}
+
+function deleteProject(e) {
+  console.log(e.target.id);
+  // Get all existent projects in localStorage
+  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  // Get id of the current selected project
+  const currentProjectId = Number(e.target.id.split('-')[1]);
+  // Remove the project from the local storage that match the id
+  for (let i = 0; i < projectsList.length; i += 1) {
+    if (projectsList[i].id === currentProjectId) {
+      projectsList.splice(i, 1);
+      break;
+    }
+  }
+  // update local storage
+  localStorage.setItem('projectsList', JSON.stringify(projectsList));
+  // update DOM
+  renderProjects();
+}
+
 export {
-  openNewProjectModal, closeNewProjectModal, createProject, appendProject,
+  openNewProjectModal,
+  closeNewProjectModal,
+  createProject,
+  appendProject,
+  renderProjects,
+  deleteProject,
 };
