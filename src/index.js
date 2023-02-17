@@ -12,12 +12,8 @@ import {
   closeNewProjectModal,
   createProject,
   renderProjects,
-  deleteProject,
   openNewProjectModal,
 } from './actions/projects';
-import {
-  renderTodosSection,
-} from './actions/todos';
 
 import './output.css';
 
@@ -70,17 +66,8 @@ renderProjects();
 const newProjectBtn = document.getElementById('new-project-btn');
 const closeNewProjectBtn = document.getElementById('close-new-btn');
 const createProjectBtn = document.getElementById('create-project');
-const deleteProjectBtns = Array.from(document.querySelectorAll('.delete-project-btn'));
-const projectBtn = Array.from(document.getElementsByClassName('project'));
 
 // projects
 newProjectBtn.addEventListener('click', openNewProjectModal);
 closeNewProjectBtn.addEventListener('click', closeNewProjectModal);
 createProjectBtn.addEventListener('click', createProject);
-deleteProjectBtns.forEach((btn) => {
-  btn.addEventListener('click', deleteProject);
-});
-// todos
-projectBtn.forEach((project) => {
-  project.addEventListener('click', renderTodosSection);
-});
