@@ -2,10 +2,10 @@ function todoListContent() {
   const todoItem = document.createElement('div');
 
   todoItem.setAttribute('id', 'todos-list-section`');
-  todoItem.setAttribute('class', 'text-2xl row-start-1 row-end-5');
+  todoItem.setAttribute('class', 'text-xl row-start-1 row-end-5');
   todoItem.innerHTML = `
-                                  <div id="todos-content">
-                                    <h2 class="mb-6 text-xl">Project name 1</h2>
+                                  <div id="todos-content" class="px-8 py-4 flex flex-col items-center">
+                                    <h2 class="mb-6 text-xl self-start">Project name 1</h2>
                                     <div class="project mb-2 p-4 bg-cyan-500 rounded-md w-full flex" id="todo-item">
                                       <label class="todo-checkbox flex-none">
                                         <input type="checkbox" name="checkbox" checked/>
