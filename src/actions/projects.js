@@ -55,8 +55,8 @@ function appendProject(obj) {
   // project delete button section
   const projectDelete = document.createElement('button');
   projectDelete.setAttribute('class', 'ml-auto bg-rose-700 delete-project-btn rounded-lg flex p-1');
-  projectDelete.setAttribute('id', `pr-${obj.id}`);
-  projectDelete.innerHTML = `<span class="material-symbols-rounded" id="pr-${obj.id}">delete</span>`;
+  projectDelete.setAttribute('id', `pr-delbtn-${obj.id}`);
+  projectDelete.innerHTML = `<span class="material-symbols-rounded" id="pr-delicon-${obj.id}">delete</span>`;
   // eslint-disable-next-line no-use-before-define
   projectDelete.addEventListener('click', deleteProject);
 
@@ -101,7 +101,7 @@ function deleteProject(e) {
   // Get all existent projects in localStorage
   const projectsList = JSON.parse(localStorage.getItem('projectsList'));
   // Get id of the current selected project
-  const currentProjectId = Number(e.target.id.split('-')[1]);
+  const currentProjectId = Number(e.target.id.split('-')[2]);
   // Remove the project from the local storage that match the id
   for (let i = 0; i < projectsList.length; i += 1) {
     if (projectsList[i].id === currentProjectId) {
