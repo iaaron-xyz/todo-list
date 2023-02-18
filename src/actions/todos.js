@@ -46,17 +46,34 @@ function renderProjectDescription(project) {
 
 function renderTodoItems(project) {
   // create basic container
-  const todoItem = document.createElement('div');
+  const todoItemsList = document.createElement('div');
+  todoItemsList.setAttribute('class', 'w-full');
+
   // Append todo items if any otherwise inform the user
   if (project.todoElements.length === 0) {
-    todoItem.setAttribute('class', 'text-center w-full');
-    todoItem.textContent = 'No items';
+    todoItemsList.setAttribute('class', 'text-center w-full mt-16');
+    todoItemsList.textContent = 'No items';
+
+  // Render list of todo items
   } else {
-    todoItem.setAttribute('class', 'project mb-2 p-4 bg-cyan-500 rounded-md w-full flex');
-    todoItem.textContent = 'There are items!';
+    for (let i = 0; i < project.todoElements.length; i += 1) {
+      const todoItem = document.createElement('div');
+      todoItem.setAttribute('class', 'project mb-2 p-4 bg-cyan-500 rounded-md w-full flex');
+      todoItem.innerHTML = `
+      <label class="todo-checkbox flex-none">
+      <input type="checkbox" name="checkbox" checked/>
+      </label>
+      <p class="grow mx-2 h-8 todo-item-text">${project.todoElements[i].title}</p>
+      <button class="self-end flex-none bg-rose-800 p-2 rounded">
+        Delete
+      </button>
+      `;
+      todoItemsList.appendChild(todoItem);
+    }
   }
 
-  return todoItem;
+  console.log(todoItemsList);
+  return todoItemsList;
 }
 
 function renderAddTodoBtn(project) {
