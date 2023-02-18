@@ -1,3 +1,35 @@
+import { TodoItem } from '../classes/item';
+
+function saveTodoItem(e) {
+  // get current project ID
+  const projectId = Number(e.target.id.split('-').pop());
+  // Get the current todo item title
+  const todoTitleInput = document.getElementById(`todo-title-${projectId}`);
+  const todoTitle = todoTitleInput.value;
+  // Get the list of projects
+  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  // Find the current project-object
+  projectsList.every((project) => {
+    // Create a new TodoITem and link it to the current project
+    if (project.id === projectId) {
+      // Create a new TodoItem object
+      const newItem = new TodoItem(
+        `${project.id}-${project.todoElements.length}`,
+        todoTitle,
+      );
+      // Append the new item to the current project list of todos
+      project.todoElements.push(newItem);
+      return false;
+    }
+    return true;
+  });
+  // Clean input field
+  todoTitleInput.value = '';
+  // save updated list of projects
+  console.log(projectsList);
+  localStorage.setItem('projectsList', JSON.stringify(projectsList));
+}
+
 function renderProjectDescription(project) {
   // Create description base element
   const projectDescription = document.createElement('h2');
@@ -32,10 +64,24 @@ function renderAddTodoBtn(project) {
   const addTodo = document.createElement('button');
   addTodo.setAttribute('id', `add-todo-btn-${project.id}`);
   addTodo.setAttribute('class', 'project text-black bg-lime-900 mb-2 p-4 bg-cyan-500 rounded-md w-6/12 flex items-center');
-  addTodo.innerHTML = `
-                      <input type="text" placeholder="Your next task!" class="rounded grow mr-4" required/>
-                      <button type="button" class="flex-none">Enter!</button>
-  `;
+  // item input value
+  const addTodoTitle = document.createElement('input');
+  addTodoTitle.setAttribute('type', 'text');
+  addTodoTitle.setAttribute('placeholder', 'Your next Task!');
+  addTodoTitle.setAttribute('class', 'rounded grow mr-4');
+  addTodoTitle.setAttribute('id', `todo-title-${project.id}`);
+  addTodoTitle.required = true;
+  // Add Todo Item btn
+  const addTodoBtn = document.createElement('button');
+  addTodoBtn.setAttribute('type', 'button');
+  addTodoBtn.setAttribute('id', `add-todo-btn-${project.id}`);
+  addTodoBtn.setAttribute('class', 'flex-none');
+  addTodoBtn.textContent = '+ Add';
+  addTodoBtn.addEventListener('click', saveTodoItem);
+
+  addTodo.appendChild(addTodoTitle);
+  addTodo.appendChild(addTodoBtn);
+
   return addTodo;
 }
 
