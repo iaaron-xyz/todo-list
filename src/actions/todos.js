@@ -94,7 +94,8 @@ function renderAddTodoBtn(project) {
   addTodoBtn.setAttribute('id', `add-todo-btn-${project.id}`);
   addTodoBtn.setAttribute('class', 'flex-none');
   addTodoBtn.textContent = '+ Add';
-  addTodoBtn.addEventListener('click', saveTodoItem);
+  // eslint-disable-next-line no-use-before-define
+  addTodoBtn.addEventListener('click', createTodoItem);
 
   addTodo.appendChild(addTodoTitle);
   addTodo.appendChild(addTodoBtn);
@@ -105,7 +106,7 @@ function renderAddTodoBtn(project) {
 function renderTodosSection(e) {
   console.log(e.target.id);
   // Get id of the current selected project
-  const currentProjectId = Number(e.target.id.split('-')[1]);
+  const currentProjectId = Number(e.target.id.split('-').pop());
   // Get todos section
   const contentSection = document.getElementById('todos-content');
   // Get list of existent projects
@@ -122,6 +123,11 @@ function renderTodosSection(e) {
   contentSection.appendChild(renderProjectDescription(currentProject));
   contentSection.appendChild(renderAddTodoBtn(currentProject));
   contentSection.appendChild(renderTodoItems(currentProject));
+}
+
+function createTodoItem(e) {
+  saveTodoItem(e);
+  renderTodosSection(e);
 }
 
 export { renderTodosSection };
