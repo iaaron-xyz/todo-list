@@ -15,7 +15,7 @@ function sidebar() {
 function todoList() {
   const todoListSection = document.createElement('section');
   todoListSection.setAttribute('id', 'section-todolist');
-  todoListSection.setAttribute('class', 'bg-pink-900 p-4 col-start-2 row-start-2 rounded-lg');
+  todoListSection.setAttribute('class', 'bg-pink-900 p-4 col-start-2 row-start-2 rounded-lg relative');
   return todoListSection;
 }
 

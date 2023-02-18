@@ -69,6 +69,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .todos-list {
+        padding: 10px;
+        width: 100%;
+        height: 650px;
+        overflow: auto;
+    }
 
     /**
     * MODAL STYLE

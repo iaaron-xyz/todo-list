@@ -47,7 +47,7 @@ function renderProjectDescription(project) {
 function renderTodoItems(project) {
   // create basic container
   const todoItemsList = document.createElement('div');
-  todoItemsList.setAttribute('class', 'w-full');
+  todoItemsList.setAttribute('class', 'todos-list text-base');
 
   // Append todo items if any otherwise inform the user
   if (project.todoElements.length === 0) {
@@ -61,7 +61,7 @@ function renderTodoItems(project) {
       todoItem.setAttribute('class', 'project mb-2 p-4 bg-cyan-500 rounded-md w-full flex');
       todoItem.innerHTML = `
       <label class="todo-checkbox flex-none">
-      <input type="checkbox" name="checkbox" checked/>
+      <input type="checkbox" name="checkbox"/>
       </label>
       <p class="grow mx-2 h-8 todo-item-text">${project.todoElements[i].title}</p>
       <button class="self-end flex-none bg-rose-800 p-2 rounded">
@@ -77,10 +77,12 @@ function renderTodoItems(project) {
 }
 
 function renderAddTodoBtn(project) {
+  // get parent container
+  const sectionTodo = document.getElementById('section-todolist');
   // Create the container
   const addTodo = document.createElement('button');
   addTodo.setAttribute('id', `add-todo-btn-${project.id}`);
-  addTodo.setAttribute('class', 'project text-black bg-lime-900 mb-2 p-4 bg-cyan-500 rounded-md w-6/12 flex items-center');
+  addTodo.setAttribute('class', 'project text-black bg-lime-900 mb-2 p-4 bg-cyan-500 rounded-md flex items-center w-6/12 absolute bottom-0 left-0 right-0 ml-auto mr-auto');
   // item input value
   const addTodoTitle = document.createElement('input');
   addTodoTitle.setAttribute('type', 'text');
@@ -100,7 +102,8 @@ function renderAddTodoBtn(project) {
   addTodo.appendChild(addTodoTitle);
   addTodo.appendChild(addTodoBtn);
 
-  return addTodo;
+  // return addTodo;
+  sectionTodo.appendChild(addTodo);
 }
 
 function renderTodosSection(e) {
@@ -109,6 +112,7 @@ function renderTodosSection(e) {
   const currentProjectId = Number(e.target.id.split('-').pop());
   // Get todos section
   const contentSection = document.getElementById('todos-content');
+  // contentSection.setAttribute('class', 'relative h-full');
   // Get list of existent projects
   const projectsList = JSON.parse(localStorage.getItem('projectsList'));
   // Get current project
@@ -121,7 +125,7 @@ function renderTodosSection(e) {
   console.log(currentProject.todoElements.length);
   contentSection.innerHTML = '';
   contentSection.appendChild(renderProjectDescription(currentProject));
-  contentSection.appendChild(renderAddTodoBtn(currentProject));
+  renderAddTodoBtn(currentProject);
   contentSection.appendChild(renderTodoItems(currentProject));
 }
 
