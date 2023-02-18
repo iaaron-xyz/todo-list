@@ -59,15 +59,33 @@ function renderTodoItems(project) {
     for (let i = 0; i < project.todoElements.length; i += 1) {
       const todoItem = document.createElement('div');
       todoItem.setAttribute('class', 'project mb-2 p-4 bg-cyan-500 rounded-md w-full flex');
-      todoItem.innerHTML = `
-      <label class="todo-checkbox flex-none">
-      <input type="checkbox" name="checkbox"/>
-      </label>
-      <p class="grow mx-2 h-8 todo-item-text">${project.todoElements[i].title}</p>
-      <button class="self-end flex-none bg-rose-800 p-2 rounded">
-        Delete
-      </button>
+      todoItem.setAttribute('id', `todo-container-${project.todoElements[i].id}`);
+      // label
+      const todoLabel = document.createElement('label');
+      todoLabel.setAttribute('class', 'todo-checkbox flex-none');
+      // input
+      const todoInput = document.createElement('input');
+      todoInput.setAttribute('type', 'checkbox');
+      todoInput.setAttribute('name', 'checkbox');
+      // paragraph
+      const todoParagraph = document.createElement('p');
+      todoParagraph.setAttribute('class', 'grow mx-2 h-8 todo-item-text');
+      todoParagraph.textContent = project.todoElements[i].title;
+      // button
+      const todoBtn = document.createElement('button');
+      todoBtn.setAttribute('class', 'self-end flex-none bg-rose-800 p-2 rounded flex');
+      todoBtn.setAttribute('id', `del-item_${project.todoElements[i].id}`);
+      todoBtn.innerHTML = `
+        <span class="material-symbols-rounded" id="del-sym_${project.todoElements[i].id}">delete</span>
       `;
+      // eslint-disable-next-line no-use-before-define
+      todoBtn.addEventListener('click', deleteTodoItem);
+
+      todoLabel.appendChild(todoInput);
+      todoItem.appendChild(todoLabel);
+      todoItem.appendChild(todoParagraph);
+      todoItem.appendChild(todoBtn);
+
       todoItemsList.appendChild(todoItem);
     }
   }
@@ -132,6 +150,33 @@ function renderTodosSection(e) {
 function createTodoItem(e) {
   saveTodoItem(e);
   renderTodosSection(e);
+}
+
+function deleteTodoItem(e) {
+  const itemIdList = e.target.id.split('_').pop().split('-');
+
+  // remove from local storage
+  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  projectsList.every((element) => {
+    if (element.id === Number(itemIdList[0])) {
+      for (let i = 0; i < element.todoElements.length; i += 1) {
+        if (e.target.id.split('_').pop() === element.todoElements[i].id) {
+          element.todoElements.splice(i, 1);
+        }
+      }
+      // break
+      return false;
+    }
+    // continue
+    return true;
+  });
+  // update local storage
+  localStorage.setItem('projectsList', JSON.stringify(projectsList));
+
+  // remove from DOM
+  const itemId = e.target.id.split('_').pop();
+  const currentItem = document.getElementById(`todo-container-${itemId}`);
+  currentItem.remove();
 }
 
 export { renderTodosSection };
