@@ -151,8 +151,14 @@ function renderTodoItems(project) {
 function renderAddTodoBtn(project) {
   // get parent container
   const sectionTodo = document.getElementById('section-todolist');
+
+  // remove old add-item element
+  if (sectionTodo.childElementCount > 1) {
+    sectionTodo.removeChild(sectionTodo.lastChild);
+  }
+
   // Create the container
-  const addTodo = document.createElement('button');
+  const addTodo = document.createElement('div');
   addTodo.setAttribute('id', `add-todo-btn-${project.id}`);
   addTodo.setAttribute('class', 'project text-black bg-lime-900 mb-2 p-4 bg-cyan-500 rounded-md flex items-center w-6/12 absolute bottom-0 left-0 right-0 ml-auto mr-auto');
   addTodo.innerHTML = `
@@ -160,7 +166,7 @@ function renderAddTodoBtn(project) {
   `;
   sectionTodo.appendChild(addTodo);
 
-  // // Add Todo Item btn
+  // Add Todo Item btn
   const addTodoBtn = document.createElement('button');
   addTodoBtn.setAttribute('type', 'button');
   addTodoBtn.setAttribute('id', `add-todo-btn-${project.id}`);
@@ -170,8 +176,7 @@ function renderAddTodoBtn(project) {
   addTodoBtn.addEventListener('click', createTodoItem);
 
   addTodo.appendChild(addTodoBtn);
-
-  // return addTodo;
+  sectionTodo.appendChild(addTodo);
 }
 
 function renderTodosSection(e) {
@@ -199,9 +204,6 @@ function createTodoItem(e) {
   // get project id
   const projectId = Number(e.target.id.split('-').pop());
   saveTodoItem(projectId);
-  // get pdirect parent fo todo items
-  // const todoList = document.getElementById('todo-list');
-  // renderTodosSection(e);
   appendNewItem(projectId);
 }
 
