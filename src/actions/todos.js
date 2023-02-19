@@ -33,27 +33,12 @@ function saveTodoItem(prId) {
   localStorage.setItem('projectsList', JSON.stringify(projectsList));
 }
 
-function appendNewItem(prId) {
-  // get parent of todo-items
-  const todoList = document.getElementById('todo-list');
-
-  // get associated project
-  const project = getProject(prId);
-
-  console.log(project);
-
-  // get the last created item in the list
-  const latestItem = project.todoElements[project.todoElements.length - 1];
-
-  // remove no-items sign for new projects
-  if (project.todoElements.length === 1) {
-    todoList.innerHTML = '';
-  }
-
-  // Create todo item
+function createTodoElement(itemObj) {
+  // Create base container
   const todoItem = document.createElement('div');
   todoItem.setAttribute('class', 'project mb-2 p-4 bg-cyan-500 rounded-md w-full flex');
-  todoItem.setAttribute('id', `todo-container-${latestItem.id}`);
+  todoItem.setAttribute('id', `todo-container-${itemObj.id}`);
+
   // label
   const todoLabel = document.createElement('label');
   todoLabel.setAttribute('class', 'todo-checkbox flex-none');
@@ -64,13 +49,13 @@ function appendNewItem(prId) {
   // paragraph
   const todoParagraph = document.createElement('p');
   todoParagraph.setAttribute('class', 'grow mx-2 h-8 todo-item-text');
-  todoParagraph.textContent = latestItem.title;
+  todoParagraph.textContent = itemObj.title;
   // button
   const todoBtn = document.createElement('button');
   todoBtn.setAttribute('class', 'self-end flex-none bg-rose-800 p-2 rounded flex');
-  todoBtn.setAttribute('id', `del-item_${latestItem.id}`);
+  todoBtn.setAttribute('id', `del-item_${itemObj.id}`);
   todoBtn.innerHTML = `
-    <span class="material-symbols-rounded" id="del-sym_${latestItem.id}">delete</span>
+    <span class="material-symbols-rounded" id="del-sym_${itemObj.id}">delete</span>
   `;
   // eslint-disable-next-line no-use-before-define
   todoBtn.addEventListener('click', deleteTodoItem);
@@ -80,8 +65,26 @@ function appendNewItem(prId) {
   todoItem.appendChild(todoParagraph);
   todoItem.appendChild(todoBtn);
 
-  // appen new todo in todo-list
-  todoList.appendChild(todoItem);
+  return todoItem;
+}
+
+function appendNewItem(prId) {
+  // get parent of todo-items
+  const todoList = document.getElementById('todo-list');
+
+  // get associated project
+  const project = getProject(prId);
+
+  // get the last created item in the list
+  const latestItem = project.todoElements[project.todoElements.length - 1];
+
+  // remove no-items sign for new projects
+  if (project.todoElements.length === 1) {
+    todoList.innerHTML = '';
+  }
+
+  // Create todo item
+  todoList.appendChild(createTodoElement(latestItem));
 }
 
 function renderProjectDescription(project) {
@@ -112,36 +115,7 @@ function renderTodoItems(project) {
   // Render list of todo items
   } else {
     for (let i = 0; i < project.todoElements.length; i += 1) {
-      const todoItem = document.createElement('div');
-      todoItem.setAttribute('class', 'project mb-2 p-4 bg-cyan-500 rounded-md w-full flex');
-      todoItem.setAttribute('id', `todo-container-${project.todoElements[i].id}`);
-      // label
-      const todoLabel = document.createElement('label');
-      todoLabel.setAttribute('class', 'todo-checkbox flex-none');
-      // input
-      const todoInput = document.createElement('input');
-      todoInput.setAttribute('type', 'checkbox');
-      todoInput.setAttribute('name', 'checkbox');
-      // paragraph
-      const todoParagraph = document.createElement('p');
-      todoParagraph.setAttribute('class', 'grow mx-2 h-8 todo-item-text');
-      todoParagraph.textContent = project.todoElements[i].title;
-      // button
-      const todoBtn = document.createElement('button');
-      todoBtn.setAttribute('class', 'self-end flex-none bg-rose-800 p-2 rounded flex');
-      todoBtn.setAttribute('id', `del-item_${project.todoElements[i].id}`);
-      todoBtn.innerHTML = `
-        <span class="material-symbols-rounded" id="del-sym_${project.todoElements[i].id}">delete</span>
-      `;
-      // eslint-disable-next-line no-use-before-define
-      todoBtn.addEventListener('click', deleteTodoItem);
-
-      todoLabel.appendChild(todoInput);
-      todoItem.appendChild(todoLabel);
-      todoItem.appendChild(todoParagraph);
-      todoItem.appendChild(todoBtn);
-
-      todoItemsList.appendChild(todoItem);
+      todoItemsList.appendChild(createTodoElement(project.todoElements[i]));
     }
   }
 
