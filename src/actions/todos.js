@@ -158,16 +158,10 @@ function renderTodosSection(e) {
   const currentProjectId = Number(e.target.id.split('-').pop());
   // Get todos section
   const contentSection = document.getElementById('todos-content');
-  // contentSection.setAttribute('class', 'relative h-full');
-  // Get list of existent projects
-  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+
   // Get current project
-  let currentProject = {};
-  projectsList.forEach((project) => {
-    if (currentProjectId === project.id) {
-      currentProject = project;
-    }
-  });
+  const currentProject = getProject(currentProjectId);
+
   contentSection.innerHTML = '';
   renderAddTodoBtn(currentProject);
   contentSection.appendChild(renderProjectDescription(currentProject));
