@@ -22,14 +22,18 @@ function saveTodoItem(prId) {
   console.log(todoTitleInput.value);
   // get the project from local storage
   const projectsList = JSON.parse(localStorage.getItem('projectsList'));
-  projectsList.forEach((pr) => {
-    if (prId === pr.id) {
-      pr.todoElements.push(new TodoItem(
-        `${prId}-${pr.todoElements.length}`,
+  // find current project and append new todo item
+  for (let i = 0; i < projectsList.length; i += 1) {
+    if (prId === projectsList[i].id) {
+      projectsList[i].todoElements.push(new TodoItem(
+        `${prId}-${projectsList[i].itemsCounter}`,
         todoTitleInput.value,
       ));
+      // update items counter
+      projectsList[i].itemsCounter += 1;
+      console.log(projectsList[i]);
     }
-  });
+  }
   localStorage.setItem('projectsList', JSON.stringify(projectsList));
 }
 
