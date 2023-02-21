@@ -1,7 +1,7 @@
 function sidebar() {
   const sidebarSection = document.createElement('section');
   sidebarSection.setAttribute('id', 'section-sidebar');
-  sidebarSection.setAttribute('class', 'bg-cyan-900 p-4 col-start-1 grid grid-rows-6 rounded-lg');
+  sidebarSection.setAttribute('class', 'bg-cyan-900 p-4 col-start-1 flex flex-col rounded-lg');
   return sidebarSection;
 }
 

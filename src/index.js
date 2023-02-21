@@ -1,4 +1,4 @@
-import { sidebarContent } from './layout/sidebar';
+import { sidebarTop, sidebarProjects, sidebarBottom } from './layout/sidebar';
 import { todoListContent } from './layout/content';
 import {
   sidebar,
@@ -55,8 +55,9 @@ container.appendChild(newProjectModal());
 // Append content to the sections
 const sectionSidebar = document.querySelector('#section-sidebar');
 document.querySelector('#section-todolist').appendChild(todoListContent());
-sectionSidebar.appendChild(sidebarContent()[0]);
-sectionSidebar.appendChild(sidebarContent()[1]);
+sectionSidebar.appendChild(sidebarTop());
+sectionSidebar.appendChild(sidebarProjects());
+sectionSidebar.appendChild(sidebarBottom());
 renderProjects();
 
 // Event listeners
