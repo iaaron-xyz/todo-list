@@ -14,6 +14,7 @@ import {
 } from './actions/projects';
 
 import './output.css';
+import { renderHomeTodos } from './actions/todos';
 
 function baseHead() {
   // header elements
@@ -59,13 +60,16 @@ sectionSidebar.appendChild(sidebarTop());
 sectionSidebar.appendChild(sidebarProjects());
 sectionSidebar.appendChild(sidebarBottom());
 renderProjects();
+renderHomeTodos();
 
 // Event listeners
+const homeBtn = document.getElementById('home-btn');
 const newProjectBtn = document.getElementById('new-project-btn');
 const closeNewProjectBtn = document.getElementById('close-new-btn');
 const createProjectBtn = document.getElementById('create-project');
 
 // projects
+homeBtn.addEventListener('click', renderHomeTodos);
 newProjectBtn.addEventListener('click', openNewProjectModal);
 closeNewProjectBtn.addEventListener('click', closeNewProjectModal);
 createProjectBtn.addEventListener('click', createProject);

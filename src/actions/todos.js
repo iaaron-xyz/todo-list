@@ -206,4 +206,26 @@ function deleteTodoItem(e) {
   currentItem.remove();
 }
 
-export { renderTodosSection };
+function renderHomeTodos() {
+  // get the element to insert the items
+  const todosContent = document.getElementById('todos-content');
+  todosContent.innerHTML = '';
+  // get available projects from localStorage
+  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  // iterate over every todoList on every project
+  projectsList.forEach((project) => {
+    if (project.todoElements.length) {
+      // Render the title for the project todo-list
+      const projectTitle = document.createElement('h2');
+      projectTitle.setAttribute('class', 'text-2xl text-left my-4 p-2');
+      projectTitle.textContent = project.name;
+      todosContent.appendChild(projectTitle);
+      // append every todo item in the project
+      project.todoElements.forEach((item) => {
+        todosContent.appendChild(createTodoElement(item));
+      });
+    }
+  });
+}
+
+export { renderTodosSection, renderHomeTodos };
