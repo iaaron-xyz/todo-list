@@ -126,37 +126,6 @@ function renderTodoItems(project) {
   return todoItemsList;
 }
 
-function renderAddTodoBtn(project) {
-  // get parent container
-  const sectionTodo = document.getElementById('section-todolist');
-
-  // remove old add-item element
-  if (sectionTodo.childElementCount > 1) {
-    sectionTodo.removeChild(sectionTodo.lastChild);
-  }
-
-  // Create the container
-  const addTodo = document.createElement('div');
-  addTodo.setAttribute('id', `add-todo-btn-${project.id}`);
-  addTodo.setAttribute('class', 'project text-black bg-lime-900 mb-2 p-4 bg-cyan-500 rounded-md flex items-center w-6/12 absolute bottom-0 left-0 right-0 ml-auto mr-auto');
-  addTodo.innerHTML = `
-    <input type="text" class="rounded grow mr-4" id="todo-title-input" placeholder="My new task" required>
-  `;
-  sectionTodo.appendChild(addTodo);
-
-  // Add Todo Item btn
-  const addTodoBtn = document.createElement('button');
-  addTodoBtn.setAttribute('type', 'button');
-  addTodoBtn.setAttribute('id', `add-todo-btn-${project.id}`);
-  addTodoBtn.setAttribute('class', 'flex-none');
-  addTodoBtn.textContent = '+ Add';
-  // eslint-disable-next-line no-use-before-define
-  addTodoBtn.addEventListener('click', createTodoItem);
-
-  addTodo.appendChild(addTodoBtn);
-  sectionTodo.appendChild(addTodo);
-}
-
 function renderTodosSection(e) {
   // Get id of the current selected project
   const currentProjectId = Number(e.target.id.split('-').pop());
@@ -167,7 +136,6 @@ function renderTodosSection(e) {
   const currentProject = getProject(currentProjectId);
 
   contentSection.innerHTML = '';
-  renderAddTodoBtn(currentProject);
   contentSection.appendChild(renderProjectDescription(currentProject));
   contentSection.appendChild(renderTodoItems(currentProject));
 }
