@@ -147,6 +147,67 @@ function createTodoItem(e) {
   appendNewItem(projectId);
 }
 
+function openTaskModal(e) {
+  console.log(e.target.id);
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modal-content');
+
+  // close button
+  const closeBtn = document.createElement('span');
+  closeBtn.setAttribute('id', 'close-new-btn');
+  closeBtn.setAttribute('class', 'close material-symbols-rounded');
+  closeBtn.textContent = 'close';
+  // closeBtn.addEventListener('click', closeTaskModal);
+
+  // Create task form container
+  const addTaskForm = document.createElement('div');
+  addTaskForm.setAttribute('id', 'create-task-modal');
+
+  // title form h2
+  const titleForm = document.createElement('h2');
+  titleForm.textContent = 'Add your new task!';
+  // form
+  const formSection = document.createElement('form');
+  formSection.setAttribute('class', 'form-elements flex flex-col');
+  formSection.innerHTML = `
+    <label for="title">Your task:</label>
+    <input type="text" name="title" id="title" class="mb-4" required>
+
+    <label for="duedate">Due date:</label>
+    <input type="date" name="duedate" id="duedate" class="mb-4">
+
+    <label for="notes">Notes:</label>
+    <textarea rows="4" name="notes" id="notes" class="mb-4"></textarea>
+
+    <label for="priority">Priority</label>
+    <select name="priority" id="priority" class="mb-8">
+      <option value="low" selected>Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+
+    <label for="project-name">Project name:</label>
+    <select name="priority" id="project-name" class="mb-8">
+      <option value="low" selected>Low</option>
+    </select>
+    `;
+  // button
+  const btnSubmit = document.createElement('button');
+  btnSubmit.setAttribute('type', 'button');
+  btnSubmit.setAttribute('id', 'create-task-btn');
+  btnSubmit.setAttribute('class', 'p-4 bg-purple-600');
+  btnSubmit.textContent = 'Create task!';
+  // btnSubmit.addEventListener('click', createTodoElement);
+
+  formSection.appendChild(btnSubmit);
+  addTaskForm.appendChild(titleForm);
+  addTaskForm.appendChild(formSection);
+
+  modalContent.appendChild(closeBtn);
+  modalContent.appendChild(addTaskForm);
+  modal.classList.remove('hidden');
+}
+
 function deleteTodoItem(e) {
   const itemIdList = e.target.id.split('_').pop().split('-');
 
@@ -196,4 +257,4 @@ function renderHomeTodos() {
   });
 }
 
-export { renderTodosSection, renderHomeTodos };
+export { renderTodosSection, renderHomeTodos, openTaskModal };

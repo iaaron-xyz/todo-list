@@ -20,16 +20,16 @@ if (!localStorage.getItem('projectsList')) {
   localStorage.setItem('idProject', idProject);
 }
 
-function openNewProjectModal() {
+function openProjectModal() {
   // display on the new project modal
-  const newProjectModal = document.getElementById('new-project-modal');
+  const newProjectModal = document.getElementById('modal');
   // hidden => display: none;
   newProjectModal.classList.remove('hidden');
 }
 
-function closeNewProjectModal() {
+function closeProjectModal() {
   // Hide the new project modal -- hidden => display: none;
-  document.getElementById('new-project-modal').classList.add('hidden');
+  document.getElementById('modal').classList.add('hidden');
   // clear input fields
   document.getElementById('project-name').value = '';
   document.getElementById('project-description').value = '';
@@ -83,7 +83,7 @@ function createProject() {
   // render new project to the DOM
   appendProject(newProject);
   // Close modal
-  closeNewProjectModal();
+  closeProjectModal();
 }
 
 function renderProjects() {
@@ -116,8 +116,8 @@ function deleteProject(e) {
 }
 
 export {
-  openNewProjectModal,
-  closeNewProjectModal,
+  openProjectModal,
+  closeProjectModal,
   createProject,
   appendProject,
   renderProjects,

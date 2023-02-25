@@ -3,18 +3,21 @@ import { todoListContent } from './layout/content';
 import {
   sidebar,
   todoList,
-  newProjectModal,
+  modal,
 } from './layout/layout';
 
 import {
-  closeNewProjectModal,
-  createProject,
+  // closeProjectModal,
+  // createProject,
   renderProjects,
-  openNewProjectModal,
+  openProjectModal,
 } from './actions/projects';
 
 import './output.css';
-import { renderHomeTodos } from './actions/todos';
+import {
+  renderHomeTodos,
+  openTaskModal,
+} from './actions/todos';
 
 function baseHead() {
   // header elements
@@ -51,7 +54,7 @@ const container = document.getElementById('container');
 // container.appendChild(topHeader());
 container.appendChild(sidebar());
 container.appendChild(todoList());
-container.appendChild(newProjectModal());
+container.appendChild(modal());
 
 // Append content to the sections
 const sectionSidebar = document.querySelector('#section-sidebar');
@@ -65,11 +68,13 @@ renderHomeTodos();
 // Event listeners
 const homeBtn = document.getElementById('home-btn');
 const newProjectBtn = document.getElementById('new-project-btn');
-const closeNewProjectBtn = document.getElementById('close-new-btn');
-const createProjectBtn = document.getElementById('create-project');
+// const closeNewProjectBtn = document.getElementById('close-new-btn');
+// const createProjectBtn = document.getElementById('create-project');
+const navbarBtnAdd = document.getElementById('navbar-button-add');
 
 // projects
 homeBtn.addEventListener('click', renderHomeTodos);
-newProjectBtn.addEventListener('click', openNewProjectModal);
-closeNewProjectBtn.addEventListener('click', closeNewProjectModal);
-createProjectBtn.addEventListener('click', createProject);
+newProjectBtn.addEventListener('click', openProjectModal);
+// closeNewProjectBtn.addEventListener('click', closeProjectModal);
+// createProjectBtn.addEventListener('click', createProject);
+navbarBtnAdd.addEventListener('click', openTaskModal);
