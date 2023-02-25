@@ -195,26 +195,36 @@ function openTaskModal(e) {
       <option value="medium">Medium</option>
       <option value="high">High</option>
     </select>
-
     <label for="project-name">Project name:</label>
     <select name="priority" id="project-name" class="mb-8">
-      <option value="low" selected>Low</option>
     </select>
     `;
+
   // button
   const btnSubmit = document.createElement('button');
   btnSubmit.setAttribute('type', 'button');
   btnSubmit.setAttribute('id', 'create-task-btn');
   btnSubmit.setAttribute('class', 'p-4 bg-purple-600');
   btnSubmit.textContent = 'Create task!';
-  // btnSubmit.addEventListener('click', createTodoElement);
+  btnSubmit.addEventListener('click', createTodoElement);
 
+  // Create the DOM elements
   formSection.appendChild(btnSubmit);
   addTaskForm.appendChild(titleForm);
   addTaskForm.appendChild(formSection);
-
   modalContent.appendChild(closeBtn);
   modalContent.appendChild(addTaskForm);
+
+  // Create list of available projects
+  const projectNames = document.getElementById('project-name');
+  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  projectsList.forEach((prj) => {
+    const projectOption = document.createElement('option');
+    projectOption.setAttribute('value', `project-${prj.id}`);
+    projectOption.textContent = prj.name;
+    projectNames.appendChild(projectOption);
+  });
+
   modal.classList.remove('hidden');
 }
 
