@@ -15,23 +15,36 @@ function getProject(id) {
   return currentProject;
 }
 
-function saveTodoItem(prId) {
-  console.log(prId);
-  // get value input
-  const todoTitleInput = document.getElementById('todo-title-input');
-  console.log(todoTitleInput.value);
-  // get the project from local storage
+function saveTodoItem() {
+  // Get current todo info
+  const taskTitle = document.getElementById('title');
+  const taskDuedate = document.getElementById('duedate');
+  const taskNotes = document.getElementById('notes');
+  const taskPriority = document.getElementById('priority');
+  const taskProject = document.getElementById('project-name');
+
+  // Get the id of the selected proejct
+  const taskProjectId = Number(taskProject.value.split('-').pop());
+
+  // // get the project from local storage
   const projectsList = JSON.parse(localStorage.getItem('projectsList'));
-  // find current project and append new todo item
+
+  // // find current project and append new todo item
   for (let i = 0; i < projectsList.length; i += 1) {
-    if (prId === projectsList[i].id) {
-      projectsList[i].todoElements.push(new TodoItem(
-        `${prId}-${projectsList[i].itemsCounter}`,
-        todoTitleInput.value,
-      ));
+    if (taskProjectId === projectsList[i].id) {
+      // Add task with current info to the project
+      projectsList[i].todoElements.push(
+        new TodoItem(
+          `${taskProjectId}-${projectsList[i].itemsCounter}`, // id
+          taskTitle.value, // title
+          taskPriority.value, // priority
+          taskNotes.value, // notes
+          taskDuedate.value, // Due date
+        ),
+      );
       // update items counter
       projectsList[i].itemsCounter += 1;
-      console.log(projectsList[i]);
+      console.log(projectsList[i].todoElements);
     }
   }
   localStorage.setItem('projectsList', JSON.stringify(projectsList));
@@ -70,25 +83,6 @@ function createTodoElement(itemObj) {
   todoItem.appendChild(todoBtn);
 
   return todoItem;
-}
-
-function appendNewItem(prId) {
-  // get parent of todo-items
-  const todoList = document.getElementById('todo-list');
-
-  // get associated project
-  const project = getProject(prId);
-
-  // get the last created item in the list
-  const latestItem = project.todoElements[project.todoElements.length - 1];
-
-  // remove no-items sign for new projects
-  if (project.todoElements.length === 1) {
-    todoList.innerHTML = '';
-  }
-
-  // Create todo item
-  todoList.appendChild(createTodoElement(latestItem));
 }
 
 function renderProjectDescription(project) {
@@ -140,11 +134,11 @@ function renderTodosSection(e) {
   contentSection.appendChild(renderTodoItems(currentProject));
 }
 
-function createTodoItem(e) {
-  // get project id
-  const projectId = Number(e.target.id.split('-').pop());
-  saveTodoItem(projectId);
-  appendNewItem(projectId);
+function createTodoItem() {
+  saveTodoItem();
+  // Refresh the page with the new information
+  // eslint-disable-next-line no-restricted-globals
+  location.reload();
 }
 
 function closeTaskModal() {
@@ -196,7 +190,7 @@ function openTaskModal(e) {
       <option value="high">High</option>
     </select>
     <label for="project-name">Project name:</label>
-    <select name="priority" id="project-name" class="mb-8">
+    <select name="project-name" id="project-name" class="mb-8">
     </select>
     `;
 
@@ -206,7 +200,7 @@ function openTaskModal(e) {
   btnSubmit.setAttribute('id', 'create-task-btn');
   btnSubmit.setAttribute('class', 'p-4 bg-purple-600');
   btnSubmit.textContent = 'Create task!';
-  btnSubmit.addEventListener('click', createTodoElement);
+  btnSubmit.addEventListener('click', createTodoItem);
 
   // Create the DOM elements
   formSection.appendChild(btnSubmit);
