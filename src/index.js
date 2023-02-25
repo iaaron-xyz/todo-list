@@ -7,8 +7,6 @@ import {
 } from './layout/layout';
 
 import {
-  // closeProjectModal,
-  // createProject,
   renderProjects,
   openProjectModal,
 } from './actions/projects';
@@ -41,7 +39,6 @@ function baseContainer() {
   const container = document.createElement('div');
   container.setAttribute('id', 'container');
   container.setAttribute('class', 'h-full w-full grid-container');
-  // container.innerHTML = '<h1>Hello Todo List!</h1>';
   return container;
 }
 
@@ -68,13 +65,9 @@ renderHomeTodos();
 // Event listeners
 const homeBtn = document.getElementById('home-btn');
 const newProjectBtn = document.getElementById('new-project-btn');
-// const closeNewProjectBtn = document.getElementById('close-new-btn');
-// const createProjectBtn = document.getElementById('create-project');
 const navbarBtnAdd = document.getElementById('navbar-button-add');
 
 // projects
 homeBtn.addEventListener('click', renderHomeTodos);
 newProjectBtn.addEventListener('click', openProjectModal);
-// closeNewProjectBtn.addEventListener('click', closeProjectModal);
-// createProjectBtn.addEventListener('click', createProject);
 navbarBtnAdd.addEventListener('click', openTaskModal);

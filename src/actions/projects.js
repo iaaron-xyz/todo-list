@@ -63,6 +63,7 @@ function openProjectModal() {
   btnSubmit.setAttribute('id', 'create-project-btn');
   btnSubmit.setAttribute('class', 'p-4 bg-purple-600');
   btnSubmit.textContent = 'Create Project!';
+  // eslint-disable-next-line no-use-before-define
   btnSubmit.addEventListener('click', createProject);
 
   // Append Elements to DOM
@@ -152,8 +153,9 @@ function deleteProject(e) {
   }
   // update local storage
   localStorage.setItem('projectsList', JSON.stringify(projectsList));
-  // update DOM
-  renderProjects();
+
+  // remove from DOM
+  document.getElementById(`project${currentProjectId}`).remove();
 }
 
 export {
