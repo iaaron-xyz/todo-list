@@ -20,19 +20,60 @@ if (!localStorage.getItem('projectsList')) {
   localStorage.setItem('idProject', idProject);
 }
 
-function openProjectModal() {
-  // display on the new project modal
-  const newProjectModal = document.getElementById('modal');
-  // hidden => display: none;
-  newProjectModal.classList.remove('hidden');
+function closeProjectModal() {
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modal-content');
+  // hide the modal
+  modal.classList.add('hidden');
+  // task form content
+  modalContent.innerHTML = '';
 }
 
-function closeProjectModal() {
-  // Hide the new project modal -- hidden => display: none;
-  document.getElementById('modal').classList.add('hidden');
-  // clear input fields
-  document.getElementById('project-name').value = '';
-  document.getElementById('project-description').value = '';
+function openProjectModal() {
+  // Get modal container
+  const newProjectModal = document.getElementById('modal');
+  const modalContent = document.getElementById('modal-content');
+
+  // close button
+  const closeBtn = document.createElement('span');
+  closeBtn.setAttribute('id', 'close-modal-btn');
+  closeBtn.setAttribute('class', 'close material-symbols-rounded');
+  closeBtn.textContent = 'close';
+  closeBtn.addEventListener('click', closeProjectModal);
+
+  // Create project form container
+  const addProjectForm = document.createElement('div');
+  addProjectForm.setAttribute('id', 'create-project-modal');
+  // title form h2
+  const titleForm = document.createElement('h2');
+  titleForm.textContent = 'Create your new Project';
+  // form
+  const formSection = document.createElement('form');
+  formSection.setAttribute('class', 'form-elements flex flex-col');
+  formSection.innerHTML = `
+    <label for="name">Your Project:</label>
+    <input type="text" name="name" id="name" class="mb-4" placeholder="Project name" required>
+
+    <label for="description">Description:</label>
+    <textarea rows="4" name="description" id="description" class="mb-4"></textarea>
+    `;
+  // button
+  const btnSubmit = document.createElement('button');
+  btnSubmit.setAttribute('type', 'button');
+  btnSubmit.setAttribute('id', 'create-project-btn');
+  btnSubmit.setAttribute('class', 'p-4 bg-purple-600');
+  btnSubmit.textContent = 'Create Project!';
+  btnSubmit.addEventListener('click', createProject);
+
+  // Append Elements to DOM
+  formSection.appendChild(btnSubmit);
+  addProjectForm.appendChild(titleForm);
+  addProjectForm.appendChild(formSection);
+  modalContent.appendChild(closeBtn);
+  modalContent.appendChild(addProjectForm);
+
+  // hidden => display: none;
+  newProjectModal.classList.remove('hidden');
 }
 
 function appendProject(obj) {
@@ -66,8 +107,8 @@ function appendProject(obj) {
 }
 
 function createProject() {
-  const name = document.getElementById('project-name');
-  const description = document.getElementById('project-description');
+  const name = document.getElementById('name');
+  const description = document.getElementById('description');
 
   // Retrieve the list of projects
   const projectsList = JSON.parse(localStorage.getItem('projectsList'));
