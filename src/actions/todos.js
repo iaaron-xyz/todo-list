@@ -147,6 +147,16 @@ function createTodoItem(e) {
   appendNewItem(projectId);
 }
 
+function closeTaskModal() {
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modal-content');
+
+  // hide the modal
+  modal.classList.add('hidden');
+  // task form content
+  modalContent.innerHTML = '';
+}
+
 function openTaskModal(e) {
   console.log(e.target.id);
   const modal = document.getElementById('modal');
@@ -154,10 +164,10 @@ function openTaskModal(e) {
 
   // close button
   const closeBtn = document.createElement('span');
-  closeBtn.setAttribute('id', 'close-new-btn');
+  closeBtn.setAttribute('id', 'close-modal-btn');
   closeBtn.setAttribute('class', 'close material-symbols-rounded');
   closeBtn.textContent = 'close';
-  // closeBtn.addEventListener('click', closeTaskModal);
+  closeBtn.addEventListener('click', closeTaskModal);
 
   // Create task form container
   const addTaskForm = document.createElement('div');
