@@ -17,14 +17,18 @@ function getProject(id) {
 
 function updateTaskStyle(item, status, context = '') {
   const checkbox = item.childNodes[0].childNodes[0];
-  const p = item.childNodes[1];
+  const p = item.childNodes[1].childNodes[0].childNodes[0];
   const btn = item.childNodes[2];
+
+  console.log(btn);
 
   // Completed task
   if (status) {
     item.classList.add('bg-gray-500');
     p.classList.add('line-through', 'text-black');
+    btn.classList.add('bg-gray-500');
     item.classList.remove('bg-blue-700');
+    btn.classList.remove('bg-rose-700');
     if (context === 'onrender') {
       checkbox.checked = true;
     }
@@ -32,7 +36,9 @@ function updateTaskStyle(item, status, context = '') {
   // Active task
   } else {
     item.classList.add('bg-blue-700');
+    btn.classList.add('bg-rose-700');
     item.classList.remove('bg-gray-500');
+    btn.classList.remove('bg-gray-500');
     p.classList.remove('line-through', 'text-black');
     if (context === 'onrender') {
       checkbox.checked = false;
@@ -116,13 +122,23 @@ function createTodoElement(itemObj) {
   todoCheckbox.setAttribute('name', 'checkbox');
   todoCheckbox.setAttribute('id', `check_${itemObj.id}`);
   todoCheckbox.addEventListener('click', updateTaskStatus);
-  // paragraph
-  const todoParagraph = document.createElement('p');
-  todoParagraph.setAttribute('class', 'grow mx-2 h-8 todo-item-text');
-  todoParagraph.textContent = itemObj.title;
+  // content
+  const todoMainContent = document.createElement('div');
+  todoMainContent.setAttribute('class', 'grow w-full');
+  // div title
+  const todoParagraph = document.createElement('div');
+  todoParagraph.setAttribute('class', 'w-full mx-2 mb-1 h-8');
+  // button title
+  const todoParagraphBtn = document.createElement('button');
+  todoParagraphBtn.setAttribute('class', 'todo-item-text text-left');
+  todoParagraphBtn.textContent = itemObj.title;
+  // details
+  const todoDetails = document.createElement('div');
+  todoDetails.setAttribute('id', 'todo-details-list');
+  todoDetails.setAttribute('class', 'detail-task');
   // button
   const todoBtn = document.createElement('button');
-  todoBtn.setAttribute('class', 'self-end flex-none bg-rose-800 p-2 rounded flex');
+  todoBtn.setAttribute('class', 'self-start flex-none p-2 rounded flex');
   todoBtn.setAttribute('id', `del-item_${itemObj.id}`);
   todoBtn.innerHTML = `
     <span class="material-symbols-rounded" id="del-sym_${itemObj.id}">delete</span>
@@ -130,10 +146,42 @@ function createTodoElement(itemObj) {
   // eslint-disable-next-line no-use-before-define
   todoBtn.addEventListener('click', deleteTodoItem);
 
+  todoParagraph.appendChild(todoParagraphBtn);
   todoLabel.appendChild(todoCheckbox);
+  todoMainContent.appendChild(todoParagraph);
+  todoMainContent.appendChild(todoDetails);
   todoItem.appendChild(todoLabel);
-  todoItem.appendChild(todoParagraph);
+  todoItem.appendChild(todoMainContent);
   todoItem.appendChild(todoBtn);
+
+  // Append details
+  if (itemObj.priority) {
+    const detailIcon = document.createElement('button');
+    detailIcon.setAttribute('class', 'flex mx-1');
+    detailIcon.innerHTML = `
+    <span class="bg-gray-900 text-white p-1 rounded-md text-xs">
+      ${itemObj.priority}
+    </span>`;
+    todoDetails.appendChild(detailIcon);
+  }
+  if (itemObj.notes) {
+    const detailIcon = document.createElement('button');
+    detailIcon.setAttribute('class', 'flex mx-1');
+    detailIcon.innerHTML = `
+    <span class="material-symbols-rounded text-xs">
+      description
+    </span>`;
+    todoDetails.appendChild(detailIcon);
+  }
+  if (itemObj.dueDate) {
+    const detailIcon = document.createElement('button');
+    detailIcon.setAttribute('class', 'flex mx-1');
+    detailIcon.innerHTML = `
+    <span class="material-symbols-rounded text-xs">
+      date_range
+    </span>`;
+    todoDetails.appendChild(detailIcon);
+  }
 
   // Add/remove classes and elementes based on current status
   updateTaskStyle(todoItem, itemObj.status, 'onrender');
