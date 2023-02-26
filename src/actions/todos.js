@@ -15,6 +15,57 @@ function getProject(id) {
   return currentProject;
 }
 
+function updateTaskStyle(item, status, context = '') {
+  const checkbox = item.childNodes[0].childNodes[0];
+  const p = item.childNodes[1];
+  const btn = item.childNodes[2];
+
+  // Completed task
+  if (status) {
+    item.classList.add('bg-gray-500');
+    p.classList.add('line-through', 'text-black');
+    item.classList.remove('bg-blue-700');
+    if (context === 'onrender') {
+      checkbox.checked = true;
+    }
+
+  // Active task
+  } else {
+    item.classList.add('bg-blue-700');
+    item.classList.remove('bg-gray-500');
+    p.classList.remove('line-through', 'text-black');
+    if (context === 'onrender') {
+      checkbox.checked = false;
+    }
+  }
+}
+
+function updateTaskStatus(e) {
+  console.log(e.target.id, ': ', e.target.checked);
+  const elementId = e.target.id.split('_').pop();
+  const projectId = Number(elementId.split('-')[0]);
+  const checkedItem = document.getElementById(`todo-container-${elementId}`);
+  console.log(checkedItem);
+
+  // Save status
+  const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+  for (let i = 0; i < projectsList.length; i += 1) {
+    //  find the project
+    if (projectsList[i].id === projectId) {
+      for (let j = 0; j < projectsList[i].todoElements.length; j += 1) {
+        // find the item
+        if (projectsList[i].todoElements[j].id === elementId) {
+          // Set the status
+          projectsList[i].todoElements[j].status = e.target.checked;
+        }
+      }
+    }
+  }
+  localStorage.setItem('projectsList', JSON.stringify(projectsList));
+
+  updateTaskStyle(checkedItem, e.target.checked);
+}
+
 function saveTodoItem() {
   // Get current todo info
   const taskTitle = document.getElementById('title');
@@ -23,7 +74,7 @@ function saveTodoItem() {
   const taskPriority = document.getElementById('priority');
   const taskProject = document.getElementById('project-name');
 
-  // Get the id of the selected proejct
+  // Get the id of the selected project
   const taskProjectId = Number(taskProject.value.split('-').pop());
 
   // // get the project from local storage
@@ -53,16 +104,18 @@ function saveTodoItem() {
 function createTodoElement(itemObj) {
   // Create base container
   const todoItem = document.createElement('div');
-  todoItem.setAttribute('class', 'project mb-2 p-4 bg-cyan-500 rounded-md w-full flex');
+  todoItem.setAttribute('class', 'task');
   todoItem.setAttribute('id', `todo-container-${itemObj.id}`);
 
   // label
   const todoLabel = document.createElement('label');
   todoLabel.setAttribute('class', 'todo-checkbox flex-none');
   // input
-  const todoInput = document.createElement('input');
-  todoInput.setAttribute('type', 'checkbox');
-  todoInput.setAttribute('name', 'checkbox');
+  const todoCheckbox = document.createElement('input');
+  todoCheckbox.setAttribute('type', 'checkbox');
+  todoCheckbox.setAttribute('name', 'checkbox');
+  todoCheckbox.setAttribute('id', `check_${itemObj.id}`);
+  todoCheckbox.addEventListener('click', updateTaskStatus);
   // paragraph
   const todoParagraph = document.createElement('p');
   todoParagraph.setAttribute('class', 'grow mx-2 h-8 todo-item-text');
@@ -77,10 +130,13 @@ function createTodoElement(itemObj) {
   // eslint-disable-next-line no-use-before-define
   todoBtn.addEventListener('click', deleteTodoItem);
 
-  todoLabel.appendChild(todoInput);
+  todoLabel.appendChild(todoCheckbox);
   todoItem.appendChild(todoLabel);
   todoItem.appendChild(todoParagraph);
   todoItem.appendChild(todoBtn);
+
+  // Add/remove classes and elementes based on current status
+  updateTaskStyle(todoItem, itemObj.status, 'onrender');
 
   return todoItem;
 }
