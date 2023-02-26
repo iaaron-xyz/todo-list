@@ -84,7 +84,7 @@ function appendProject(obj) {
   const newProject = document.createElement('div');
 
   // Set attributes and values for the new project
-  newProject.setAttribute('class', 'project-element bg-cyan-500 w-full mb-2 p-2 rounded-md text-left flex');
+  newProject.setAttribute('class', 'project-element bg-violet-100 w-full mb-2 p-2 rounded-md text-left flex drop-shadow-md hover:bg-violet-400 hover:text-white hover:font-bold');
   newProject.setAttribute('id', `project${obj.id}`);
 
   // name project section
@@ -96,7 +96,7 @@ function appendProject(obj) {
 
   // project delete button section
   const projectDelete = document.createElement('button');
-  projectDelete.setAttribute('class', 'ml-auto bg-rose-700 delete-project-btn rounded-lg flex p-1');
+  projectDelete.setAttribute('class', 'ml-auto bg-transparent delete-project-btn rounded-lg flex p-1 hover:bg-rose-500 hover:text-white');
   projectDelete.setAttribute('id', `pr-delbtn-${obj.id}`);
   projectDelete.innerHTML = `<span class="material-symbols-rounded" id="pr-delicon-${obj.id}">delete</span>`;
   // eslint-disable-next-line no-use-before-define

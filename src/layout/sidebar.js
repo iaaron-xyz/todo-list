@@ -10,8 +10,8 @@ function sidebarTop() {
   homeSection.innerHTML = '<h1 class="text-3xl">All.do: Organize better</h1>';
   homeBtn.setAttribute('id', 'home-btn');
   homeBtn.setAttribute('type', 'button');
-  homeBtn.setAttribute('class', 'text-xl text-left my-4 p-4 w-full bg-orange-500 rounded-lg');
-  homeBtn.textContent = 'Home';
+  homeBtn.setAttribute('class', 'flex items-center text-2xl text-left my-4 p-4 w-full rounded-lg bg-white text-violet-700 hover:bg-violet-200 hover:text-bold');
+  homeBtn.innerHTML = '<span class="material-symbols-rounded icon-lg mr-2">home</span> Home';
 
   // Append elements
   sidebarTopElements.appendChild(homeSection);
@@ -43,7 +43,7 @@ function sidebarBottom() {
   sidebarBottomElements.setAttribute('id', 'sidebar-bottom');
   sidebarBottomElements.setAttribute('class', 'flex-none');
   sidebarBottomElements.innerHTML = `
-    <button id="new-project-btn" class="bg-cyan-500 p-3 rounded-md w-full">
+    <button id="new-project-btn" class="bg-violet-600 text-white font-bold p-3 rounded-md w-full drop-shadow-lg hover:bg-violet-700">
       New project +
     </button>`;
 

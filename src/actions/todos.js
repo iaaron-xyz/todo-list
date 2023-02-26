@@ -19,27 +19,33 @@ function updateTaskStyle(item, status, context = '') {
   const checkbox = item.childNodes[0].childNodes[0];
   const p = item.childNodes[1].childNodes[0].childNodes[0];
   const btn = item.childNodes[2];
+  const icons = item.childNodes[1].childNodes[1];
 
   console.log(btn);
 
   // Completed task
   if (status) {
-    item.classList.add('bg-gray-500');
-    p.classList.add('line-through', 'text-black');
-    btn.classList.add('bg-gray-500');
-    item.classList.remove('bg-blue-700');
-    btn.classList.remove('bg-rose-700');
+    item.classList.add('bg-gray-300');
+    p.classList.add('line-through', 'text-gray-500');
+    btn.classList.add('bg-gray-300');
+    icons.classList.add('text-gray-500');
+    // remove classes
+    item.classList.remove('bg-white', 'hover:bg-sky-100');
+    icons.classList.remove('text-purple-600');
     if (context === 'onrender') {
       checkbox.checked = true;
     }
 
   // Active task
   } else {
-    item.classList.add('bg-blue-700');
-    btn.classList.add('bg-rose-700');
-    item.classList.remove('bg-gray-500');
-    btn.classList.remove('bg-gray-500');
-    p.classList.remove('line-through', 'text-black');
+    item.classList.add('bg-white', 'hover:bg-sky-100');
+    btn.classList.add('bg-transparent');
+    icons.classList.add('text-purple-600');
+    // remove classes
+    item.classList.remove('bg-gray-300');
+    btn.classList.remove('bg-gray-300');
+    p.classList.remove('line-through', 'text-gray-500');
+    icons.classList.remove('text-gray-500');
     if (context === 'onrender') {
       checkbox.checked = false;
     }
@@ -110,7 +116,7 @@ function saveTodoItem() {
 function createTodoElement(itemObj) {
   // Create base container
   const todoItem = document.createElement('div');
-  todoItem.setAttribute('class', 'task');
+  todoItem.setAttribute('class', 'task drop-shadow-lg');
   todoItem.setAttribute('id', `todo-container-${itemObj.id}`);
 
   // label
@@ -138,7 +144,7 @@ function createTodoElement(itemObj) {
   todoDetails.setAttribute('class', 'detail-task');
   // button
   const todoBtn = document.createElement('button');
-  todoBtn.setAttribute('class', 'self-start flex-none p-2 rounded flex');
+  todoBtn.setAttribute('class', 'self-start flex-none p-2 rounded flex text-rose-500 hover:bg-rose-500 hover:text-white');
   todoBtn.setAttribute('id', `del-item_${itemObj.id}`);
   todoBtn.innerHTML = `
     <span class="material-symbols-rounded" id="del-sym_${itemObj.id}">delete</span>
@@ -159,7 +165,7 @@ function createTodoElement(itemObj) {
     const detailIcon = document.createElement('button');
     detailIcon.setAttribute('class', 'flex mx-1');
     detailIcon.innerHTML = `
-    <span class="bg-gray-900 text-white p-1 rounded-md text-xs">
+    <span class="bg-orange-400 text-white p-1 rounded-md text-xs font-bold">
       ${itemObj.priority}
     </span>`;
     todoDetails.appendChild(detailIcon);
@@ -364,7 +370,7 @@ function renderHomeTodos() {
     if (project.todoElements.length) {
       // Render the title for the project todo-list
       const projectTitle = document.createElement('h2');
-      projectTitle.setAttribute('class', 'text-2xl text-left my-4 p-2');
+      projectTitle.setAttribute('class', 'text-2xl text-left my-4 p-2 text-purple-600 font-bold');
       projectTitle.textContent = project.name;
       todosContent.appendChild(projectTitle);
       // append every todo item in the project
