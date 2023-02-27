@@ -52,32 +52,32 @@ function renderTaskContent(e) {
   closeBtn.addEventListener('click', closeTaskPanel);
   // title
   const taskTitle = document.createElement('h2');
-  taskTitle.setAttribute('class', 'text-3xl mt-4');
+  taskTitle.setAttribute('class', 'text-3xl mt-4 font-bold');
   taskTitle.textContent = currentItem.title;
   // Priority
   const taskPriority = document.createElement('div');
   taskPriority.setAttribute('class', 'text-xl my-6');
   taskPriority.innerHTML = `
-    Priority: <span class="p-1 bg-yellow-200 rounded-lg">${currentItem.priority}</span>`;
+    Priority: <span class="p-1 bg-yellow-200 rounded-lg border border-white">${currentItem.priority}</span>`;
   // due date
   const taskDuedate = document.createElement('div');
   taskDuedate.setAttribute('class', 'text-xl my-6');
   if (currentItem.dueDate) {
     taskDuedate.innerHTML = `
-      <h3>Due date:</h3>
-      <button class="bg-slate-400 p-4 rounded-lg">${currentItem.dueDate}</button>`;
+      <h3 class="font-bold">Due date:</h3>
+      <button class="bg-purple-500 text-white drop-shadow-md p-4 rounded-lg">${currentItem.dueDate}</button>`;
   } else {
-    taskDuedate.innerHTML = '<h3>Due date:</h3> <button class="bg-slate-400 p-4 rounded-lg">Set a Due date.</button>';
+    taskDuedate.innerHTML = '<h3 class="font-bold">Due date:</h3> <button class="bg-purple-500 text-white drop-shadow-md p-4 rounded-lg">Set a Due date.</button>';
   }
   // notes
   const taskNotes = document.createElement('div');
   taskNotes.setAttribute('class', 'text-xl my-6');
   if (currentItem.notes) {
     taskNotes.innerHTML = `
-      <h3>Notes:</h3>
-      <button class="bg-slate-400 p-4 text-left rounded-lg">${currentItem.notes}</button>`;
+      <h3 class="font-bold">Notes:</h3>
+      <button class="bg-purple-500 text-white drop-shadow-md p-4 text-left rounded-lg">${currentItem.notes}</button>`;
   } else {
-    taskNotes.innerHTML = '<h3>Notes:</h3> <button class="bg-slate-400 p-4 rounded-lg">Write some notes.</button>';
+    taskNotes.innerHTML = '<h3 class="font-bold">Notes:</h3> <button class="bg-purple-500 text-white drop-shadow-md p-4 rounded-lg">Write some notes.</button>';
   }
 
   // Create nodes

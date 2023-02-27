@@ -24,7 +24,7 @@ function modal() {
 function leftPanel() {
   const panelSection = document.createElement('div');
   panelSection.setAttribute('id', 'right-panel');
-  panelSection.setAttribute('class', 'panel absolute top-0 right-0 h-full w-4/12 p-4 z-10 bg-teal-200 hidden');
+  panelSection.setAttribute('class', 'panel absolute top-0 right-0 h-full w-4/12 p-4 z-10 bg-violet-200 hidden');
   panelSection.innerHTML = 'Task content here';
   return panelSection;
 }
