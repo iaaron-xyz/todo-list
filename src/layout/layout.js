@@ -1,14 +1,14 @@
 function sidebar() {
   const sidebarSection = document.createElement('section');
   sidebarSection.setAttribute('id', 'section-sidebar');
-  sidebarSection.setAttribute('class', 'bg-white p-4 col-start-1 flex flex-col drop-shaodw-lg');
+  sidebarSection.setAttribute('class', 'h-full bg-white p-4 col-start-1 flex flex-col drop-shaodw-lg');
   return sidebarSection;
 }
 
 function todoList() {
   const todoListSection = document.createElement('section');
   todoListSection.setAttribute('id', 'section-todolist');
-  todoListSection.setAttribute('class', 'bg-violet-200 col-start-2 relative');
+  todoListSection.setAttribute('class', 'h-full bg-violet-200 col-start-2 sticky');
   return todoListSection;
 }
 
@@ -21,6 +21,14 @@ function modal() {
   return modalSection;
 }
 
+function leftPanel() {
+  const panelSection = document.createElement('div');
+  panelSection.setAttribute('id', 'right-panel');
+  panelSection.setAttribute('class', 'panel absolute top-0 right-0 h-full w-4/12 p-4 z-10 bg-teal-900');
+  panelSection.innerHTML = 'Task content here';
+  return panelSection;
+}
+
 export {
-  sidebar, todoList, modal,
+  sidebar, todoList, modal, leftPanel,
 };

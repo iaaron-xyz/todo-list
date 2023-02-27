@@ -4,6 +4,7 @@ import {
   sidebar,
   todoList,
   modal,
+  leftPanel,
 } from './layout/layout';
 
 import {
@@ -52,6 +53,7 @@ const container = document.getElementById('container');
 container.appendChild(sidebar());
 container.appendChild(todoList());
 container.appendChild(modal());
+container.appendChild(leftPanel());
 
 // Append content to the sections
 const sectionSidebar = document.querySelector('#section-sidebar');

@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+
+    * {
+        box-sizing: border-box;
+    }
     .material-symbols-rounded {
     font-variation-settings:
     'FILL' 0,
@@ -75,6 +79,10 @@
     input[type="checkbox"]:checked::before {
         transform: scale(1);
     }
+    #todos-content {
+        overflow: auto;
+        height: 850px;
+    }
     .todo-item-text {
         white-space: nowrap; 
         width: 600px; 
@@ -84,8 +92,6 @@
     .todos-list {
         padding: 10px;
         width: 100%;
-        height: 650px;
-        overflow: auto;
     }
 
     span.icon-lg {
