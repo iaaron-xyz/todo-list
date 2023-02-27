@@ -91,6 +91,7 @@
     }
     .todos-list {
         padding: 10px;
+        width: 100%;
     }
 
     span.icon-lg {

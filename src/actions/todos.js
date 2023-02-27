@@ -255,7 +255,7 @@ function openTaskModal(e) {
   // close button
   const closeBtn = document.createElement('span');
   closeBtn.setAttribute('id', 'close-modal-btn');
-  closeBtn.setAttribute('class', 'close material-symbols-rounded');
+  closeBtn.setAttribute('class', 'close material-symbols-rounded hover:bg-violet-100');
   closeBtn.textContent = 'close';
   closeBtn.addEventListener('click', closeTaskModal);
 
@@ -265,28 +265,29 @@ function openTaskModal(e) {
 
   // title form h2
   const titleForm = document.createElement('h2');
+  titleForm.setAttribute('class', 'text-xl font-bold mb-4');
   titleForm.textContent = 'Add your new task!';
   // form
   const formSection = document.createElement('form');
   formSection.setAttribute('class', 'form-elements flex flex-col');
   formSection.innerHTML = `
     <label for="title">Your task:</label>
-    <input type="text" name="title" id="title" class="mb-4" required>
+    <input type="text" name="title" id="title" class="form-input mb-4 rounded-lg border-0 bg-violet-100" required>
 
     <label for="duedate">Due date:</label>
-    <input type="date" name="duedate" id="duedate" class="mb-4">
+    <input type="date" name="duedate" id="duedate" class="form-input mb-4 rounded-lg border-0 bg-violet-100">
 
     <label for="notes">Notes:</label>
-    <textarea rows="4" name="notes" id="notes" class="mb-4"></textarea>
+    <textarea rows="4" name="notes" id="notes" class="form-input mb-4 rounded-lg border-0 bg-violet-100"></textarea>
 
     <label for="priority">Priority</label>
-    <select name="priority" id="priority" class="mb-8">
+    <select name="priority" id="priority" class="form-input mb-8 rounded-lg border-0 bg-violet-100">
       <option value="low" selected>Low</option>
       <option value="medium">Medium</option>
       <option value="high">High</option>
     </select>
     <label for="project-name">Project name:</label>
-    <select name="project-name" id="project-name" class="mb-8">
+    <select name="project-name" id="project-name" class="form-input mb-8 rounded-lg border-0 bg-violet-100">
     </select>
     `;
 
@@ -294,7 +295,7 @@ function openTaskModal(e) {
   const btnSubmit = document.createElement('button');
   btnSubmit.setAttribute('type', 'button');
   btnSubmit.setAttribute('id', 'create-task-btn');
-  btnSubmit.setAttribute('class', 'p-4 bg-purple-600');
+  btnSubmit.setAttribute('class', 'p-4 bg-purple-600 text-white rounded-lg font-bold');
   btnSubmit.textContent = 'Create task!';
   btnSubmit.addEventListener('click', createTodoItem);
 

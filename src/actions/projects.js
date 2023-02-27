@@ -37,7 +37,7 @@ function openProjectModal() {
   // close button
   const closeBtn = document.createElement('span');
   closeBtn.setAttribute('id', 'close-modal-btn');
-  closeBtn.setAttribute('class', 'close material-symbols-rounded');
+  closeBtn.setAttribute('class', 'close material-symbols-rounded hover:bg-violet-100');
   closeBtn.textContent = 'close';
   closeBtn.addEventListener('click', closeProjectModal);
 
@@ -46,22 +46,23 @@ function openProjectModal() {
   addProjectForm.setAttribute('id', 'create-project-modal');
   // title form h2
   const titleForm = document.createElement('h2');
+  titleForm.setAttribute('class', 'text-xl font-bold mb-4');
   titleForm.textContent = 'Create your new Project';
   // form
   const formSection = document.createElement('form');
   formSection.setAttribute('class', 'form-elements flex flex-col');
   formSection.innerHTML = `
     <label for="name">Your Project:</label>
-    <input type="text" name="name" id="name" class="mb-4" placeholder="Project name" required>
+    <input type="text" name="name" id="name" class="form-input mb-4 rounded-lg border-0 bg-violet-100" placeholder="Project name" required>
 
     <label for="description">Description:</label>
-    <textarea rows="4" name="description" id="description" class="mb-4"></textarea>
+    <textarea rows="4" name="description" id="description" class="form-input mb-4 rounded-lg border-0 bg-violet-100"></textarea>
     `;
   // button
   const btnSubmit = document.createElement('button');
   btnSubmit.setAttribute('type', 'button');
   btnSubmit.setAttribute('id', 'create-project-btn');
-  btnSubmit.setAttribute('class', 'p-4 bg-purple-600');
+  btnSubmit.setAttribute('class', 'p-4 bg-purple-600 text-white rounded-lg font-bold');
   btnSubmit.textContent = 'Create Project!';
   // eslint-disable-next-line no-use-before-define
   btnSubmit.addEventListener('click', createProject);

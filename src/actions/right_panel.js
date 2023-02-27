@@ -47,7 +47,7 @@ function renderTaskContent(e) {
   // Close button
   const closeBtn = document.createElement('button');
   closeBtn.setAttribute('id', 'close-panel-btn');
-  closeBtn.setAttribute('class', 'close-panel-btn flex ml-auto');
+  closeBtn.setAttribute('class', 'close-panel-btn flex ml-auto rounded-xl hover:bg-violet-300');
   closeBtn.innerHTML = '<div class="material-symbols-rounded">close</div>';
   closeBtn.addEventListener('click', closeTaskPanel);
   // title
@@ -58,7 +58,7 @@ function renderTaskContent(e) {
   const taskPriority = document.createElement('div');
   taskPriority.setAttribute('class', 'text-xl my-6');
   taskPriority.innerHTML = `
-    Priority: <span class="p-1 bg-yellow-200 rounded-lg border border-white">${currentItem.priority}</span>`;
+    <span class="font-bold">Priority</span>: <span class="p-1 bg-yellow-200 rounded-lg border border-white">${currentItem.priority}</span>`;
   // due date
   const taskDuedate = document.createElement('div');
   taskDuedate.setAttribute('class', 'text-xl my-6');
