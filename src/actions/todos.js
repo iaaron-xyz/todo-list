@@ -1,27 +1,11 @@
 import { TodoItem } from '../classes/item';
-
-function getProject(id) {
-  // query local storage
-  const projects = JSON.parse(localStorage.getItem('projectsList'));
-
-  // get project given an id
-  let currentProject = {};
-  projects.forEach((project) => {
-    if (id === project.id) {
-      currentProject = project;
-    }
-  });
-
-  return currentProject;
-}
+import { renderTaskContent, getProject } from './right_panel';
 
 function updateTaskStyle(item, status, context = '') {
   const checkbox = item.childNodes[0].childNodes[0];
   const p = item.childNodes[1].childNodes[0].childNodes[0];
   const btn = item.childNodes[2];
   const icons = item.childNodes[1].childNodes[1];
-
-  console.log(btn);
 
   // Completed task
   if (status) {
@@ -136,8 +120,10 @@ function createTodoElement(itemObj) {
   todoParagraph.setAttribute('class', 'w-full mx-2 mb-1 h-8');
   // button title
   const todoParagraphBtn = document.createElement('button');
+  todoParagraphBtn.setAttribute('id', `todo-title_${itemObj.id}`);
   todoParagraphBtn.setAttribute('class', 'todo-item-text text-left');
   todoParagraphBtn.textContent = itemObj.title;
+  todoParagraphBtn.addEventListener('click', renderTaskContent);
   // details
   const todoDetails = document.createElement('div');
   todoDetails.setAttribute('id', 'todo-details-list');
@@ -381,4 +367,6 @@ function renderHomeTodos() {
   });
 }
 
-export { renderTodosSection, renderHomeTodos, openTaskModal };
+export {
+  renderTodosSection, renderHomeTodos, openTaskModal,
+};
