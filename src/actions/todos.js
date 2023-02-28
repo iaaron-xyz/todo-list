@@ -384,17 +384,28 @@ function renderHomeTodos() {
   todosContent.innerHTML = '';
   // get available projects from localStorage
   const projectsList = JSON.parse(localStorage.getItem('projectsList'));
+
   // iterate over every todoList on every project
   projectsList.forEach((project) => {
+    // Non empty projects
     if (project.todoElements.length) {
+      let existActiveItem = 0;
       // Render the title for the project todo-list
       const projectTitle = document.createElement('h2');
       projectTitle.setAttribute('class', 'text-2xl text-left my-4 p-2 text-purple-600 font-bold');
       projectTitle.textContent = project.name;
-      todosContent.appendChild(projectTitle);
       // append every todo item in the project
       project.todoElements.forEach((item) => {
-        todosContent.appendChild(createTodoElement(item));
+        if (!item.status) {
+          existActiveItem += 1;
+        }
+        if (existActiveItem === 1 && !item.status) {
+          todosContent.appendChild(projectTitle);
+          existActiveItem += 1;
+        }
+        if (!item.status) {
+          todosContent.appendChild(createTodoElement(item));
+        }
       });
     }
   });
