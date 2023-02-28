@@ -48,15 +48,15 @@
         -webkit-appearance: none;
         appearance: none;
         /* For iOS < 15 to remove gradient background */
-        background-color: #fff;
+        background-color: #f6f0fb;
         /* Not removed via appearance */
         margin: 0;
         font: inherit;
         color: currentColor;
         width: 1.15em;
         height: 1.15em;
-        border: 0.1em solid blue;
-        border-radius: 0.35em;
+        border: 0.1em solid rgb(212, 162, 255);
+        border-radius: 0.6em;
         transform: translateY(-0.075em);
         display: grid;
         place-content: center;
