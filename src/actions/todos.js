@@ -97,6 +97,27 @@ function saveTodoItem() {
   localStorage.setItem('projectsList', JSON.stringify(projectsList));
 }
 
+function updateCheckedtodoContainer(e) {
+  // get ids
+  const itemId = e.target.id.split('_').pop();
+  const todoContainerId = `todo-container-${itemId}`;
+
+  // get todo list of active tasks
+  const activeTodos = document.getElementById('todo-list');
+  // get todo list of completed tasks
+  const completedTodos = document.getElementById('todo-list-completed');
+  // get current todo container
+  const currentTodoContainer = document.getElementById(todoContainerId);
+
+  // remove from current container and prepend to the other
+  currentTodoContainer.remove();
+  if (e.target.checked) {
+    completedTodos.prepend(currentTodoContainer);
+  } else {
+    activeTodos.prepend(currentTodoContainer);
+  }
+}
+
 function createTodoElement(itemObj) {
   // Create base container
   const todoItem = document.createElement('div');
@@ -112,6 +133,7 @@ function createTodoElement(itemObj) {
   todoCheckbox.setAttribute('name', 'checkbox');
   todoCheckbox.setAttribute('id', `check_${itemObj.id}`);
   todoCheckbox.addEventListener('click', updateTaskStatus);
+  todoCheckbox.addEventListener('click', updateCheckedtodoContainer);
   // content
   const todoMainContent = document.createElement('div');
   todoMainContent.setAttribute('class', 'grow w-full');
@@ -200,6 +222,9 @@ function renderTodoItems(project) {
   const todoItemsList = document.createElement('div');
   todoItemsList.setAttribute('class', 'todos-list text-base');
   todoItemsList.setAttribute('id', 'todo-list');
+  const completedItems = document.createElement('div');
+  completedItems.setAttribute('class', 'todos-list text-base');
+  completedItems.setAttribute('id', 'todo-list-completed');
 
   // Append todo items if any otherwise inform the user
   if (project.todoElements.length === 0) {
@@ -209,11 +234,17 @@ function renderTodoItems(project) {
   // Render list of todo items
   } else {
     for (let i = 0; i < project.todoElements.length; i += 1) {
-      todoItemsList.appendChild(createTodoElement(project.todoElements[i]));
+      // active tasks
+      if (project.todoElements[i].status) {
+        completedItems.appendChild(createTodoElement(project.todoElements[i]));
+      // completed tasks
+      } else {
+        todoItemsList.appendChild(createTodoElement(project.todoElements[i]));
+      }
     }
   }
 
-  return todoItemsList;
+  return [todoItemsList, completedItems];
 }
 
 function renderTodosSection(e) {
@@ -227,7 +258,8 @@ function renderTodosSection(e) {
 
   contentSection.innerHTML = '';
   contentSection.appendChild(renderProjectDescription(currentProject));
-  contentSection.appendChild(renderTodoItems(currentProject));
+  contentSection.appendChild(renderTodoItems(currentProject)[0]);
+  contentSection.appendChild(renderTodoItems(currentProject)[1]);
 }
 
 function createTodoItem() {
