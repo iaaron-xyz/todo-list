@@ -43,7 +43,7 @@
         grid-template-columns: 1em auto;
         gap: 0.5em;
     }
-    input[type="checkbox"] {
+    .task-check {
         /* Add if not using autoprefixer */
         -webkit-appearance: none;
         appearance: none;
@@ -64,7 +64,7 @@
     .todo-checkbox {
         margin-top: .25em;
     }
-    input[type="checkbox"]::before {
+    .task-check::before {
         content: "";
         width: 0.65em;
         height: 0.65em;
@@ -76,7 +76,7 @@
         transform-origin: bottom left;
         clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     }
-    input[type="checkbox"]:checked::before {
+    .task-check:checked::before {
         transform: scale(1);
     }
     #todos-content {
@@ -139,5 +139,57 @@
         color: #000;
         text-decoration: none;
         cursor: pointer;
+    }
+    #checkbox-toggle {
+        -webkit-appearance: none;
+        visibility: hidden;
+        display: none;
+    }
+    .label-toggle {
+        width: 40px;
+        height: 20px;
+    }
+    .switch-theme {
+        position: relative;
+        display: block;
+        background: rgb(15 23 42);
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: ease-in 0.5s;
+    }
+    #checkbox-toggle:checked ~ .switch-theme {
+        background: white;
+    }
+    .switch-theme:before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        background: white;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        transition: 0.5s;
+    }
+    #checkbox-toggle:checked ~ .switch-theme:before {
+        transform: translateX(-50px);
+    }
+    .switch-theme:after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        background: rgb(15 23 42);
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        transition: 0.5s;
+        transform: translateX(50px);
+    }
+    #checkbox-toggle:checked ~ .switch-theme:after {
+        transform: translateX(0px);
     }
 }

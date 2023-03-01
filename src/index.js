@@ -17,6 +17,7 @@ import {
   renderHomeTodos,
   openTaskModal,
 } from './actions/todos';
+import { toggleNightDayMode } from './actions/content';
 
 function baseHead() {
   // header elements
@@ -68,8 +69,10 @@ renderHomeTodos();
 const homeBtn = document.getElementById('home-btn');
 const newProjectBtn = document.getElementById('new-project-btn');
 const navbarBtnAdd = document.getElementById('navbar-button-add');
+const checkboxToggle = document.getElementById('checkbox-toggle');
 
 // projects
 homeBtn.addEventListener('click', renderHomeTodos);
 newProjectBtn.addEventListener('click', openProjectModal);
 navbarBtnAdd.addEventListener('click', openTaskModal);
+checkboxToggle.addEventListener('click', toggleNightDayMode);

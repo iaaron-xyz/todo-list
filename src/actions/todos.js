@@ -131,6 +131,7 @@ function createTodoElement(itemObj) {
   const todoCheckbox = document.createElement('input');
   todoCheckbox.setAttribute('type', 'checkbox');
   todoCheckbox.setAttribute('name', 'checkbox');
+  todoCheckbox.setAttribute('class', 'task-check');
   todoCheckbox.setAttribute('id', `check_${itemObj.id}`);
   todoCheckbox.addEventListener('click', updateTaskStatus);
   todoCheckbox.addEventListener('click', updateCheckedtodoContainer);
