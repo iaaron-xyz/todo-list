@@ -9,12 +9,12 @@ function updateTaskStyle(item, status, context = '') {
 
   // Completed task
   if (status) {
-    item.classList.add('bg-gray-300');
+    item.classList.add('bg-gray-300', 'dark:bg-slate-800');
     p.classList.add('line-through', 'text-gray-500');
-    btn.classList.add('bg-gray-300');
+    btn.classList.add('bg-gray-300', 'dark:bg-slate-800');
     icons.classList.add('text-gray-500');
     // remove classes
-    item.classList.remove('bg-white', 'hover:bg-sky-100');
+    item.classList.remove('bg-white', 'hover:bg-sky-100', 'dark:bg-slate-700');
     icons.classList.remove('text-purple-600');
     if (context === 'onrender') {
       checkbox.checked = true;
@@ -22,12 +22,12 @@ function updateTaskStyle(item, status, context = '') {
 
   // Active task
   } else {
-    item.classList.add('bg-white', 'hover:bg-sky-100');
+    item.classList.add('bg-white', 'hover:bg-sky-100', 'dark:bg-slate-700');
     btn.classList.add('bg-transparent');
     icons.classList.add('text-purple-600');
     // remove classes
-    item.classList.remove('bg-gray-300');
-    btn.classList.remove('bg-gray-300');
+    item.classList.remove('bg-gray-300', 'dark:bg-slate-800');
+    btn.classList.remove('bg-gray-300', 'dark:bg-slate-800');
     p.classList.remove('line-through', 'text-gray-500');
     icons.classList.remove('text-gray-500');
     if (context === 'onrender') {
@@ -131,7 +131,7 @@ function createTodoElement(itemObj) {
   const todoCheckbox = document.createElement('input');
   todoCheckbox.setAttribute('type', 'checkbox');
   todoCheckbox.setAttribute('name', 'checkbox');
-  todoCheckbox.setAttribute('class', 'task-check');
+  todoCheckbox.setAttribute('class', 'task-check dark:bg-slate-700');
   todoCheckbox.setAttribute('id', `check_${itemObj.id}`);
   todoCheckbox.addEventListener('click', updateTaskStatus);
   todoCheckbox.addEventListener('click', updateCheckedtodoContainer);
@@ -150,7 +150,7 @@ function createTodoElement(itemObj) {
   // details
   const todoDetails = document.createElement('div');
   todoDetails.setAttribute('id', 'todo-details-list');
-  todoDetails.setAttribute('class', 'detail-task');
+  todoDetails.setAttribute('class', 'detail-task dark:text-purple-400');
   // button
   const todoBtn = document.createElement('button');
   todoBtn.setAttribute('class', 'self-start flex-none p-2 rounded flex text-rose-500 hover:bg-rose-500 hover:text-white');
@@ -305,22 +305,22 @@ function openTaskModal(e) {
   formSection.setAttribute('class', 'form-elements flex flex-col');
   formSection.innerHTML = `
     <label for="title">Your task:</label>
-    <input type="text" name="title" id="title" class="form-input mb-4 rounded-lg border-0 bg-violet-100" required>
+    <input type="text" name="title" id="title" class="form-input mb-4 rounded-lg border-0 bg-violet-100 dark:bg-slate-500 darK:text-slate-200" required>
 
     <label for="duedate">Due date:</label>
-    <input type="date" name="duedate" id="duedate" class="form-input mb-4 rounded-lg border-0 bg-violet-100">
+    <input type="date" name="duedate" id="duedate" class="form-input mb-4 rounded-lg border-0 bg-violet-100 dark:bg-slate-500 darK:text-slate-200">
 
     <label for="notes">Notes:</label>
-    <textarea rows="4" name="notes" id="notes" class="form-input mb-4 rounded-lg border-0 bg-violet-100"></textarea>
+    <textarea rows="4" name="notes" id="notes" class="form-input mb-4 rounded-lg border-0 bg-violet-100 dark:bg-slate-500 darK:text-slate-200"></textarea>
 
     <label for="priority">Priority</label>
-    <select name="priority" id="priority" class="form-input mb-8 rounded-lg border-0 bg-violet-100">
+    <select name="priority" id="priority" class="form-input mb-8 rounded-lg border-0 bg-violet-100 dark:bg-slate-500 darK:text-slate-200">
       <option value="low" selected>Low</option>
       <option value="medium">Medium</option>
       <option value="high">High</option>
     </select>
     <label for="project-name">Project name:</label>
-    <select name="project-name" id="project-name" class="form-input mb-8 rounded-lg border-0 bg-violet-100">
+    <select name="project-name" id="project-name" class="form-input mb-8 rounded-lg border-0 bg-violet-100 dark:bg-slate-500 darK:text-slate-200">
     </select>
     `;
 
@@ -393,7 +393,7 @@ function renderHomeTodos() {
       let existActiveItem = 0;
       // Render the title for the project todo-list
       const projectTitle = document.createElement('h2');
-      projectTitle.setAttribute('class', 'text-2xl text-left my-4 p-2 text-purple-600 font-bold');
+      projectTitle.setAttribute('class', 'text-2xl text-left my-4 p-2 text-purple-600 font-bold dark:text-violet-500');
       projectTitle.textContent = project.name;
       // append every todo item in the project
       project.todoElements.forEach((item) => {

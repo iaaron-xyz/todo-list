@@ -10,7 +10,7 @@ function sidebarTop() {
   homeSection.innerHTML = '<h1 class="text-3xl">All.do: Organize better</h1>';
   homeBtn.setAttribute('id', 'home-btn');
   homeBtn.setAttribute('type', 'button');
-  homeBtn.setAttribute('class', 'flex items-center text-2xl text-left my-4 p-4 w-full rounded-lg bg-white text-violet-700 hover:bg-violet-200 hover:text-bold');
+  homeBtn.setAttribute('class', 'flex items-center text-2xl text-left my-4 p-4 w-full rounded-lg bg-white text-violet-700 hover:bg-violet-200 hover:text-bold dark:bg-slate-800 dark:text-slate-300');
   homeBtn.innerHTML = '<span class="material-symbols-rounded icon-lg mr-2">home</span> Home';
 
   // Append elements

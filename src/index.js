@@ -35,7 +35,7 @@ function baseContainer() {
   const body = document.getElementsByTagName('body')[0];
   // Set base attributes for the project
   html.setAttribute('class', 'h-full w-full');
-  body.setAttribute('class', 'h-full w-full box-border bg-white text-slate-700');
+  body.setAttribute('class', 'h-full w-full box-border bg-white text-slate-700 dark:text-slate-200');
 
   // Create the base div element
   const container = document.createElement('div');

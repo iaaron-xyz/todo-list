@@ -58,7 +58,7 @@ function renderTaskContent(e) {
   const taskPriority = document.createElement('div');
   taskPriority.setAttribute('class', 'text-xl my-6');
   taskPriority.innerHTML = `
-    <span class="font-bold">Priority</span>: <span class="p-1 bg-yellow-200 rounded-lg border border-white">${currentItem.priority}</span>`;
+    <span class="font-bold">Priority</span>: <span class="p-1 bg-yellow-200 rounded-lg border border-white dark:text-slate-900 dark:border-slate-900">${currentItem.priority}</span>`;
   // due date
   const taskDuedate = document.createElement('div');
   taskDuedate.setAttribute('class', 'text-xl my-6');

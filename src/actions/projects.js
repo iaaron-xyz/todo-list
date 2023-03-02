@@ -53,10 +53,10 @@ function openProjectModal() {
   formSection.setAttribute('class', 'form-elements flex flex-col');
   formSection.innerHTML = `
     <label for="name">Your Project:</label>
-    <input type="text" name="name" id="name" class="form-input mb-4 rounded-lg border-0 bg-violet-100" placeholder="Project name" required>
+    <input type="text" name="name" id="name" class="form-input mb-4 rounded-lg border-0 bg-violet-100 dark:bg-slate-500 dark:text-white" placeholder="Project name" required>
 
     <label for="description">Description:</label>
-    <textarea rows="4" name="description" id="description" class="form-input mb-4 rounded-lg border-0 bg-violet-100"></textarea>
+    <textarea rows="4" name="description" id="description" class="form-input mb-4 rounded-lg border-0 bg-violet-100 dark:bg-slate-500 dark:text-white"></textarea>
     `;
   // button
   const btnSubmit = document.createElement('button');
@@ -85,7 +85,7 @@ function appendProject(obj) {
   const newProject = document.createElement('div');
 
   // Set attributes and values for the new project
-  newProject.setAttribute('class', 'project-element bg-violet-100 w-full mb-2 p-2 rounded-md text-left flex drop-shadow-md hover:bg-violet-400 hover:text-white hover:font-bold');
+  newProject.setAttribute('class', 'project-element bg-violet-100 w-full mb-2 p-2 rounded-md text-left flex drop-shadow-md hover:bg-violet-400 hover:text-white hover:font-bold dark:bg-slate-700');
   newProject.setAttribute('id', `project${obj.id}`);
 
   // name project section
