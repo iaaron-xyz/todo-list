@@ -1,5 +1,12 @@
 ## Description
-This project is an implementation of a To do list using npm, webpack and tailwindcss. With pure JavaScript and no frameworks.
+This project is an implementation of a To do list using npm, webpack and tailwindcss. With pure JavaScript and no frameworks. This webapp can be toggled between light and dark mode.
+
+### Light mode:
+![Light mode](./README_files/todolist_light.jpeg)
+
+### Dark mode:
+![Dark mode](./README_files/todolist_dark.jpeg)
+
 ## How to run the project
 To run the project, you must have installed git and nodejs.
 
