@@ -19,6 +19,12 @@ import {
 } from './actions/todos';
 import { toggleNightDayMode } from './actions/content';
 
+// create darkMode variable if not exist
+if (!localStorage.getItem('darkMode')) {
+  const darkMode = false;
+  localStorage.setItem('darkMode', darkMode);
+}
+
 function baseHead() {
   // header elements
   const linkElement = document.createElement('link');
@@ -33,8 +39,15 @@ function baseContainer() {
   // Base classes
   const html = document.getElementsByTagName('html')[0];
   const body = document.getElementsByTagName('body')[0];
+
   // Set base attributes for the project
-  html.setAttribute('class', 'h-full w-full');
+  const darkMode = JSON.parse(localStorage.getItem('darkMode'));
+  // decide if add dark class
+  if (darkMode) {
+    html.setAttribute('class', 'h-full w-full dark');
+  } else {
+    html.setAttribute('class', 'h-full w-full');
+  }
   body.setAttribute('class', 'h-full w-full box-border bg-white text-slate-700 dark:text-slate-200');
 
   // Create the base div element
@@ -44,7 +57,7 @@ function baseContainer() {
   return container;
 }
 
-// appen base div cintainer
+// append base div cintainer
 document.head.appendChild(baseHead());
 document.body.appendChild(baseContainer());
 const container = document.getElementById('container');
